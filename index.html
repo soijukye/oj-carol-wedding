@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A romantic wedding website with event details, RSVP, and travel information.">
+	<title>Oj & Carol | Wedding</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--bg: #f7f1ea;
+			--bg-soft: #efe4d7;
+			--surface: rgba(255, 252, 248, 0.82);
+			--text: #2f241d;
+			--muted: #6f5e52;
+			--accent: #a86b55;
+			--accent-2: #6f8672;
+			--border: rgba(80, 56, 44, 0.14);
+			--shadow: 0 24px 60px rgba(74, 53, 41, 0.14);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		section {
+			scroll-margin-top: 110px;
+		}
+
+		body {
+			margin: 0;
+			font-family: Inter, sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at top left, rgba(168, 107, 85, 0.18), transparent 28%),
+				radial-gradient(circle at 85% 10%, rgba(111, 134, 114, 0.18), transparent 24%),
+				linear-gradient(180deg, #fbf8f4 0%, var(--bg) 42%, #f6eee4 100%);
+			min-height: 100vh;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			background-image: linear-gradient(rgba(47, 36, 29, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(47, 36, 29, 0.03) 1px, transparent 1px);
+			background-size: 34px 34px;
+			mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
+			opacity: 0.55;
+		}
+
+		.page {
+			width: min(1160px, calc(100% - 32px));
+			margin: 0 auto;
+			padding: 24px 0 56px;
+			position: relative;
+			z-index: 1;
+		}
+
+		.nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			padding: 18px 22px;
+			margin-bottom: 24px;
+			border: 1px solid var(--border);
+			border-radius: 24px;
+			background: rgba(255, 251, 246, 0.72);
+			backdrop-filter: blur(18px);
+			box-shadow: 0 12px 30px rgba(74, 53, 41, 0.08);
+			position: sticky;
+			top: 16px;
+			z-index: 20;
+		}
+
+		.brand {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.brand strong {
+			font-family: "Playfair Display", serif;
+			font-size: 1.7rem;
+			letter-spacing: 0.04em;
+			line-height: 1;
+		}
+
+		.brand span,
+		.nav-links a,
+		.eyebrow,
+		.label,
+		.meta,
+		.subtle {
+			color: var(--muted);
+		}
+
+		.nav-links {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 14px;
+			font-size: 0.95rem;
+		}
+
+		.nav-links a {
+			text-decoration: none;
+			transition: color 0.2s ease;
+		}
+
+		.nav-links a:hover {
+			color: var(--accent);
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: 1.1fr 0.9fr;
+			gap: 24px;
+			align-items: stretch;
+			margin-bottom: 26px;
+		}
+
+		.hero-copy,
+		.card,
+		.panel,
+		.timeline-item,
+		.rsvp,
+		.faq-item {
+			border: 1px solid var(--border);
+			border-radius: 28px;
+			background: var(--surface);
+			backdrop-filter: blur(16px);
+			box-shadow: var(--shadow);
+		}
+
+		.contact-list {
+			display: grid;
+			gap: 14px;
+			margin: 0;
+		}
+
+		.contact-list strong {
+			display: block;
+			margin-bottom: 4px;
+		}
+
+		.contact-list a {
+			color: var(--accent);
+			text-decoration: none;
+		}
+
+		.contact-list a:hover {
+			text-decoration: underline;
+		}
+
+
+		.hero-copy {
+			padding: 42px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			min-height: 620px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.hero-copy::after {
+			content: "";
+			position: absolute;
+			inset: auto -60px -80px auto;
+			width: 240px;
+			height: 240px;
+			background: radial-gradient(circle, rgba(168, 107, 85, 0.18), transparent 68%);
+			filter: blur(8px);
+		}
+
+		.eyebrow {
+			font-size: 0.82rem;
+			text-transform: uppercase;
+			letter-spacing: 0.22em;
+			font-weight: 700;
+			margin-bottom: 16px;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-family: "Playfair Display", serif;
+		}
+
+		h1 {
+			font-size: clamp(4rem, 10vw, 7.8rem);
+			max-width: 8ch;
+			letter-spacing: -0.03em;
+		}
+
+		.hero-copy p {
+			max-width: 48ch;
+			font-size: 1.05rem;
+			line-height: 1.8;
+			color: var(--muted);
+			margin: 18px 0 0;
+		}
+
+		.cta-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			margin-top: 28px;
+		}
+
+		.button {
+			appearance: none;
+			border: 0;
+			border-radius: 999px;
+			padding: 14px 22px;
+			font: inherit;
+			font-weight: 700;
+			cursor: pointer;
+			text-decoration: none;
+			transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.button:hover {
+			transform: translateY(-1px);
+		}
+
+		.button.primary {
+			background: var(--text);
+			color: #fffaf4;
+			box-shadow: 0 18px 30px rgba(47, 36, 29, 0.18);
+		}
+
+		.button.secondary {
+			background: rgba(168, 107, 85, 0.12);
+			color: var(--text);
+			border: 1px solid rgba(168, 107, 85, 0.24);
+		}
+
+		.hero-visual {
+			display: grid;
+			gap: 24px;
+		}
+
+		.portrait {
+			min-height: 420px;
+			border-radius: 30px;
+			overflow: hidden;
+			position: relative;
+			border: 1px solid var(--border);
+			box-shadow: var(--shadow);
+			background:
+				linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.18)),
+				radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 40%),
+				linear-gradient(145deg, #c98e6b 0%, #946d61 35%, #5d6d63 100%);
+		}
+
+		.portrait::before,
+		.portrait::after {
+			content: "";
+			position: absolute;
+			border-radius: 999px;
+			background: rgba(255, 247, 239, 0.18);
+			filter: blur(2px);
+		}
+
+		.portrait::before {
+			width: 260px;
+			height: 260px;
+			top: -48px;
+			left: -36px;
+		}
+
+		.portrait::after {
+			width: 220px;
+			height: 220px;
+			right: -22px;
+			bottom: 26px;
+		}
+
+		.portrait-content {
+			position: absolute;
+			inset: auto 0 0;
+			padding: 28px;
+			background: linear-gradient(180deg, transparent, rgba(32, 22, 18, 0.68));
+			color: #fff8f1;
+		}
+
+		.portrait-content h2 {
+			font-size: clamp(2.4rem, 5vw, 4rem);
+			margin-bottom: 8px;
+		}
+
+		.portrait-content p {
+			margin: 0;
+			max-width: 32ch;
+			line-height: 1.7;
+			color: rgba(255, 245, 238, 0.88);
+		}
+
+		.contribution-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.payment-card {
+			padding: 24px;
+			border-radius: 28px;
+			background: rgba(255, 252, 248, 0.84);
+			border: 1px solid var(--border);
+			box-shadow: var(--shadow);
+			min-width: 0;
+		}
+
+		.payment-card h3 {
+			font-size: 2rem;
+			margin-bottom: 12px;
+			line-height: 1.08;
+			overflow-wrap: anywhere;
+		}
+
+		.payment-card ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: grid;
+			gap: 10px;
+		}
+
+		.payment-card li {
+			padding: 12px 0;
+			border-top: 1px solid rgba(80, 56, 44, 0.1);
+			overflow-wrap: anywhere;
+		}
+
+		.payment-card li:first-child {
+			border-top: 0;
+			padding-top: 0;
+		}
+
+		.payment-card strong {
+			display: block;
+			color: var(--text);
+			margin-bottom: 4px;
+			overflow-wrap: anywhere;
+		}
+
+		.card,
+		.panel,
+		.timeline-item,
+		.faq-item,
+		.rsvp,
+		.story-box {
+			padding: 22px;
+			min-width: 0;
+		}
+
+		.card h3,
+		.panel h3,
+		.rsvp h2,
+		.faq-item h3,
+		.timeline-item h3,
+		.story-box h3 {
+			font-size: 2rem;
+			margin-bottom: 10px;
+			line-height: 1.08;
+			overflow-wrap: anywhere;
+		}
+
+		.card p,
+		.panel p,
+		.faq-item p,
+		.rsvp p,
+		.timeline-item p,
+		.story-box p,
+		.story-box blockquote,
+		.payment-card p,
+		li {
+			line-height: 1.7;
+			color: var(--muted);
+			overflow-wrap: anywhere;
+		}
+
+		.section {
+			margin-top: 24px;
+		}
+
+		.section-head {
+			display: flex;
+			align-items: end;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 16px;
+		}
+
+		.section-head h2 {
+			font-size: clamp(2.4rem, 5vw, 4.4rem);
+		}
+
+		.story-layout {
+			display: grid;
+			grid-template-columns: 1.1fr 0.9fr;
+			gap: 18px;
+		}
+
+		.gallery-shell {
+			padding: 24px;
+			border-radius: 28px;
+			background: rgba(255, 252, 248, 0.84);
+			border: 1px solid var(--border);
+			box-shadow: var(--shadow);
+		}
+
+		.carousel {
+			display: grid;
+			gap: 16px;
+		}
+
+		.carousel-viewport {
+			overflow: hidden;
+			border-radius: 24px;
+		}
+
+		.carousel-track {
+			display: flex;
+			gap: 16px;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			scroll-behavior: smooth;
+			padding-bottom: 6px;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		.carousel-track::-webkit-scrollbar {
+			height: 10px;
+		}
+
+		.carousel-track::-webkit-scrollbar-thumb {
+			background: rgba(80, 56, 44, 0.22);
+			border-radius: 999px;
+		}
+
+		.carousel-slide {
+			flex: 0 0 min(84%, 760px);
+			scroll-snap-align: center;
+			border-radius: 26px;
+			overflow: hidden;
+			position: relative;
+			min-height: 420px;
+			box-shadow: 0 18px 40px rgba(74, 53, 41, 0.16);
+		}
+
+		.carousel-slide img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.carousel-caption {
+			position: absolute;
+			left: 18px;
+			bottom: 18px;
+			right: 18px;
+			padding: 18px 20px;
+			border-radius: 18px;
+			background: linear-gradient(180deg, rgba(24, 17, 13, 0.08), rgba(24, 17, 13, 0.72));
+			color: #fff9f2;
+			backdrop-filter: blur(6px);
+		}
+
+		.carousel-caption strong {
+			display: block;
+			font-family: "Playfair Display", serif;
+			font-size: 2rem;
+			margin-bottom: 4px;
+		}
+
+		.carousel-caption span {
+			display: block;
+			line-height: 1.6;
+			color: rgba(255, 249, 242, 0.88);
+		}
+
+		.carousel-controls {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+
+		.carousel-actions {
+			display: flex;
+			gap: 10px;
+		}
+
+		.carousel-button {
+			border: 1px solid rgba(168, 107, 85, 0.22);
+			background: rgba(168, 107, 85, 0.1);
+			color: var(--text);
+			border-radius: 999px;
+			width: 46px;
+			height: 46px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.2rem;
+			cursor: pointer;
+			transition: transform 0.2s ease, background 0.2s ease;
+		}
+
+		.carousel-button:hover {
+			transform: translateY(-1px);
+			background: rgba(168, 107, 85, 0.16);
+		}
+
+		.story-box {
+			padding: 28px;
+			border-radius: 28px;
+			background: rgba(255, 252, 248, 0.84);
+			border: 1px solid var(--border);
+			box-shadow: var(--shadow);
+		}
+
+		.story-box p {
+			line-height: 1.8;
+			margin-bottom: 14px;
+		}
+
+		.story-box blockquote {
+			margin: 0;
+			padding: 20px 20px 20px 24px;
+			border-left: 4px solid rgba(168, 107, 85, 0.5);
+			background: rgba(168, 107, 85, 0.08);
+			border-radius: 0 18px 18px 0;
+			color: var(--text);
+			line-height: 1.8;
+		}
+
+		.timeline {
+			display: grid;
+			gap: 14px;
+		}
+
+		.timeline-item {
+			display: grid;
+			grid-template-columns: 100px 1fr;
+			gap: 18px;
+			align-items: start;
+		}
+
+		.time {
+			font-family: "Cormorant Garamond", serif;
+			font-size: 2rem;
+			color: var(--accent);
+			line-height: 1;
+		}
+
+		.timeline-item h3,
+		.faq-item h3 {
+			font-size: 1.7rem;
+			margin-bottom: 6px;
+		}
+
+		.info-grid {
+			display: grid;
+			grid-template-columns: 1.1fr 0.9fr;
+			gap: 18px;
+			align-items: start;
+		}
+
+		.list {
+			display: grid;
+			gap: 14px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.list li {
+			padding: 14px 0;
+			border-top: 1px solid rgba(80, 56, 44, 0.1);
+		}
+
+		.list li:first-child {
+			border-top: 0;
+			padding-top: 0;
+		}
+
+		.list strong {
+			display: block;
+			color: var(--text);
+			margin-bottom: 4px;
+		}
+
+		.rsvp-wrap {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+			align-items: stretch;
+		}
+
+		.rsvp {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		form {
+			display: grid;
+			gap: 14px;
+		}
+
+		form button {
+			margin-top: clamp(28px, 6vh, 56px);
+		}
+
+		label {
+			display: grid;
+			gap: 8px;
+			font-weight: 600;
+			color: var(--text);
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			border-radius: 16px;
+			border: 1px solid rgba(80, 56, 44, 0.14);
+			background: rgba(255, 252, 248, 0.92);
+			padding: 14px 15px;
+			font: inherit;
+			color: var(--text);
+			outline: none;
+			transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		select {
+			appearance: none;
+			background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+			background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+			background-size: 6px 6px, 6px 6px;
+			background-repeat: no-repeat;
+			padding-right: 46px;
+			cursor: pointer;
+		}
+
+		select:invalid {
+			color: var(--muted);
+		}
+
+		select option {
+			color: var(--text);
+		}
+
+		input:focus,
+		select:focus,
+		textarea:focus {
+			border-color: rgba(168, 107, 85, 0.55);
+			box-shadow: 0 0 0 4px rgba(168, 107, 85, 0.12);
+		}
+
+		textarea {
+			min-height: 120px;
+			resize: vertical;
+		}
+
+		.faq-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 18px;
+			align-items: stretch;
+		}
+
+		.faq-grid .faq-item:nth-child(2) {
+			grid-row: span 2;
+		}
+
+		.footer {
+			padding: 30px 0 10px;
+			text-align: center;
+			color: var(--muted);
+			font-size: 0.95rem;
+		}
+
+		.fade-up {
+			animation: fadeUp 0.8s ease both;
+		}
+
+		.delay-1 {
+			animation-delay: 0.08s;
+		}
+
+		.delay-2 {
+			animation-delay: 0.16s;
+		}
+
+		.delay-3 {
+			animation-delay: 0.24s;
+		}
+
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(18px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 960px) {
+
+			.hero,
+			.story-layout,
+			.gallery-shell,
+			.info-grid,
+			.rsvp-wrap,
+			.faq-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.faq-grid .faq-item:nth-child(2) {
+				grid-row: auto;
+			}
+
+			.section-head {
+				align-items: start;
+				flex-direction: column;
+			}
+
+			.hero-copy {
+				min-height: auto;
+			}
+
+			.carousel-slide {
+				flex-basis: 88%;
+			}
+		}
+
+		@media (max-width: 720px) {
+			.page {
+				width: min(100% - 20px, 1160px);
+				padding-top: 10px;
+			}
+
+			.nav {
+				padding: 16px;
+				border-radius: 20px;
+				flex-direction: column;
+				align-items: start;
+			}
+
+			.hero-copy {
+				padding: 28px 22px;
+			}
+
+			.faq-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.faq-grid .faq-item:nth-child(2) {
+				grid-row: auto;
+			}
+
+			.timeline-item {
+				grid-template-columns: 1fr;
+				gap: 8px;
+			}
+
+			.carousel-slide {
+				flex-basis: 92%;
+				min-height: 320px;
+			}
+
+			.portrait {
+				min-height: 360px;
+			}
+
+			h1 {
+				font-size: clamp(3.4rem, 17vw, 5.2rem);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<main class="page">
+		<header class="nav fade-up">
+			<div class="brand">
+				<strong>Oj & Carol</strong>
+				<span id="countdown-nav">Countdown loading...</span>
+			</div>
+			<nav class="nav-links" aria-label="Primary">
+				<a href="#story">Our Story</a>
+				<a href="#gallery">Gallery</a>
+				<a href="#details">Details</a>
+				<a href="#contribute">Contribute</a>
+				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
+					target="_blank">
+					RSVP
+				</a>
+			</nav>
+		</header>
+
+		<section class="hero">
+			<article class="hero-copy fade-up delay-1">
+				<div>
+					<div class="eyebrow">You are cordially invited</div>
+					<h1>Oj &amp; Carol</h1>
+					<p>We are getting married — and we cannot imagine this day without you. </p>
+
+					<div class="cta-row">
+						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
+							target="_blank" class="button primary">
+							RSVP now
+						</a>
+						<a class="button secondary" href="#contribute">Contribute</a>
+					</div>
+				</div>
+			</article>
+
+			<aside class="hero-visual fade-up delay-2">
+				<div class="portrait">
+					<div class="portrait-content">
+						<h2>Formal Invitation to follow.</h2>
+						<p>Please wait for further details.</p>
+						<p><strong id="countdown-hero">Countdown loading...</strong></p>
+					</div>
+				</div>
+			</aside>
+		</section>
+
+		<section class="section" id="story">
+			<div class="section-head fade-up delay-1">
+				<h2><i>Our </i> Story</h2>
+			</div>
+			<div class="story-layout">
+				<div class="story-box fade-up delay-2">
+					<p>
+						We met on a rainy afternoon, when a shared umbrella became the first of many small adventures.
+						What started as a chance conversation grew into weekend road trips, a kitchen full of music,
+						and a life built on kindness and good coffee.
+					</p>
+					<p>
+						This wedding is a celebration of the people, places, and moments that shaped our story.
+						We cannot wait to share one beautiful evening with the family and friends who made it all
+						possible.
+					</p>
+					<blockquote>
+						“Whatever our souls are made of, his and mine are the same.”
+					</blockquote>
+				</div>
+				<div class="story-box fade-up delay-3">
+					<div class="eyebrow">A note from the couple</div>
+					<h3>Thank you for being part of our day</h3>
+					<p>
+						Your presence is the greatest gift. Whether you are traveling from across town or across the
+						world,
+						we are honored to celebrate with you.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="gallery">
+			<div class="section-head fade-up delay-1">
+				<h2>Our <i>slice of life</i></h2>
+			</div>
+			<div class="gallery-shell fade-up delay-2">
+				<div class="carousel" data-carousel>
+					<div class="carousel-controls">
+						<div class="carousel-actions">
+							<button class="carousel-button" type="button" data-carousel-prev
+								aria-label="Previous photo">‹</button>
+							<button class="carousel-button" type="button" data-carousel-next
+								aria-label="Next photo">›</button>
+						</div>
+					</div>
+					<div class="carousel-viewport">
+						<div class="carousel-track" data-carousel-track>
+							<figure class="carousel-slide">
+								<img src="images/photo-1.jpg" alt="A couple smiling together in formal wedding attire">
+								<figcaption class="carousel-caption">
+									<strong>date or something</strong>
+									<span>caption.</span>
+								</figcaption>
+							</figure>
+							<figure class="carousel-slide">
+								<img src="images/photo-2.jpg" alt="A romantic couple portrait outdoors with warm light">
+								<figcaption class="carousel-caption">
+									<strong>beach portrait</strong>
+									<span>caption.</span>
+								</figcaption>
+							</figure>
+							<figure class="carousel-slide">
+								<img src="images/photo-3.jpg" alt="A wedding couple holding hands during a celebration">
+								<figcaption class="carousel-caption">
+									<strong>titanic</strong>
+									<span>caption.</span>
+								</figcaption>
+							</figure>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="details">
+			<div class="section-head fade-up delay-1">
+				<h2>Invitation</h2>
+			</div>
+			<div class="info-grid">
+				<div class="panel fade-up delay-2">
+					<h3>Invitation note</h3>
+					<ul class="list">
+						<li>
+							<strong>Wedding date</strong>
+							2 Jan 2027
+						</li>
+						<li>
+							<strong>Location</strong>
+							Kampala, Uganda
+						</li>
+						<li>
+							<strong>Formal invitation</strong>
+							To follow.
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="contribute">
+			<div class="section-head fade-up delay-1">
+				<h2>Contribute to Our Wedding</h2>
+			</div>
+			<div class="contribution-grid">
+				<div class="payment-card fade-up delay-2">
+					<div class="eyebrow">UGX</div>
+					<h3>Bank transfer</h3>
+					<ul>
+						<li><strong>Account name</strong> Carol Bazirake Kyomuhendo</li>
+						<li><strong>Bank</strong> Housing Finance Bank Uganda</li>
+						<li><strong>Branch</strong> Kikuubo</li>
+						<li><strong>Account number</strong> 1060009445327</li>
+						<li><strong>Swift/BIC</strong> HFINUGKAXXX</li>
+					</ul>
+				</div>
+				<div class="payment-card fade-up delay-2">
+					<div class="eyebrow">GBP</div>
+					<h3>International transfers</h3>
+					<ul>
+						<li><strong>Account name</strong> Andrew Kwezi</li>
+						<li><strong>Bank</strong> Revolut Ltd</li>
+						<li><strong>Sort code</strong> 04-29-09</li>
+						<li><strong>Account no</strong> 36562424</li>
+						<li><strong>SWIFT/BIC</strong> REVOGB21</li>
+						<li><strong>IBAN</strong> GB18REVO00997086743069</li>
+					</ul>
+				</div>
+				<div class="payment-card fade-up delay-3">
+					<div class="eyebrow">GBP / USD</div>
+					<h3>Revolut account</h3>
+					<ul>
+						<li><strong>Account name</strong> Carol Bazirake Kyomuhendo</li>
+						<li><strong>Bank</strong> Revolut Ltd</li>
+						<li><strong>Sort code</strong> 04-29-09</li>
+						<li><strong>Account no</strong> 38900874</li>
+						<li><strong>SWIFT/BIC</strong> REVOGB21</li>
+						<li><strong>IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+					</ul>
+				</div>
+				<div class="payment-card fade-up delay-3">
+					<div class="eyebrow">Mobile Money</div>
+					<h3>Send via mobile money</h3>
+					<ul>
+						<li><strong>Name</strong> Carol Kyomuhendo</li>
+						<li><strong>Number</strong> +256782406100</li>
+						<li><strong>Gift registry</strong> Use the same bank and mobile money details above.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="FAQs">
+
+
+			</div>
+			<div class="faq-grid">
+				<div class="faq-item fade-up delay-2">
+					<div class="eyebrow">FAQ</div>
+					<h3>What time should I arrive?</h3>
+					<p>Please arrive 1 hour before the ceremony so you can settle in comfortably.</p>
+				</div>
+				<div class="faq-item fade-up delay-3">
+					<div class="eyebrow">FAQ</div>
+					<h3>Who do I contact for further details?</h3>
+					<div class="contact-list">
+						<p>
+							<strong>Kusaasira</strong>
+							<a href="tel:+256774443100">+256 774 443100</a>
+						</p>
+						<p>
+							<strong>Doreen Muhebwa</strong>
+							<a href="tel:+256751235925">+256 751 235925</a>
+						</p>
+					</div>
+				</div>
+				<div class="faq-item fade-up delay-3">
+					<div class="eyebrow">FAQ</div>
+					<h3>Is the ceremony outdoors?</h3>
+					<p>Yes, the ceremony is outdoors if the weather permits it. An indoor backup space is prepared
+						for the full event.</p>
+				</div>
+			</div>
+			</div>
+		</section>
+
+		<footer class="footer fade-up delay-3">
+			Made with love.
+			I'm not getting paid for this 😔
+		</footer>
+	</main>
+
+	<script>
+		const carousel = document.querySelector("[data-carousel]");
+		if (carousel) {
+			const track = carousel.querySelector("[data-carousel-track]");
+			const prevButton = carousel.querySelector("[data-carousel-prev]");
+			const nextButton = carousel.querySelector("[data-carousel-next]");
+			const scrollAmount = () => track.querySelector(".carousel-slide")?.offsetWidth ?? track.clientWidth * 0.85;
+
+			prevButton.addEventListener("click", () => {
+				track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+			});
+
+			nextButton.addEventListener("click", () => {
+				track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+			});
+		}
+
+		const weddingDate = new Date("2027-01-02T00:00:00+03:00");
+		const countdownNav = document.getElementById("countdown-nav");
+		const countdownHero = document.getElementById("countdown-hero");
+
+		function updateCountdown() {
+			const now = new Date();
+			const diff = weddingDate - now;
+			if (diff <= 0) {
+				const finishedText = "We are married";
+				if (countdownNav) countdownNav.textContent = finishedText;
+				if (countdownHero) countdownHero.textContent = finishedText;
+				return;
+			}
+
+			const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+			const minutes = Math.floor((diff / (1000 * 60)) % 60);
+			const countdownText = `${totalDays}d ${hours}h ${minutes}m`;
+
+			if (countdownNav) countdownNav.textContent = countdownText;
+			if (countdownHero) countdownHero.textContent = countdownText;
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 60000);
+		const rsvpForm = document.getElementById("rsvpForm");
+
+		if (rsvpForm) {
+			rsvpForm.addEventListener("submit", async (e) => {
+				e.preventDefault();
+
+				const formData = new FormData(rsvpForm);
+
+				try {
+					await fetch(
+						"https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/formResponse",
+						{
+							method: "POST",
+							mode: "no-cors",
+							body: formData
+						}
+					);
+
+					document.getElementById("rsvp-success").style.display = "block";
+					rsvpForm.reset();
+
+					setTimeout(() => {
+						document.getElementById("rsvp-success").style.display = "none";
+					}, 5000);
+
+				} catch (error) {
+					alert("There was a problem sending your RSVP. Please try again.");
+				}
+			});
+		}
+
+	</script>
+</body>
+
+</html>
