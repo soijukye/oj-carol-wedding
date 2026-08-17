@@ -67,20 +67,22 @@
 		}
 
 		.nav {
+			--nav-collapse: 0;
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-start;
 			align-items: center;
-			gap: 16px;
-			padding: 18px 22px;
-			margin-bottom: 24px;
+			gap: calc(16px - 10px * var(--nav-collapse));
+			padding: calc(18px - 12px * var(--nav-collapse)) calc(22px - 10px * var(--nav-collapse));
+			width: calc(100% - (var(--nav-collapse) * (100% - 180px)));
 			border: 1px solid var(--border);
-			border-radius: 24px;
+			border-radius: calc(24px - 10px * var(--nav-collapse));
 			background: rgba(255, 251, 246, 0.72);
 			backdrop-filter: blur(18px);
 			box-shadow: 0 12px 30px rgba(74, 53, 41, 0.08);
 			position: sticky;
 			top: 16px;
 			z-index: 20;
+			margin-bottom: 24px;
 		}
 
 		.brand {
@@ -94,6 +96,7 @@
 			font-size: 1.7rem;
 			letter-spacing: 0.04em;
 			line-height: 1;
+			white-space: nowrap;
 		}
 
 		.brand span,
@@ -103,6 +106,24 @@
 		.meta,
 		.subtle {
 			color: var(--muted);
+		}
+
+		.nav .brand span,
+		.nav .nav-links {
+			white-space: nowrap;
+			opacity: clamp(0, calc(1 - (var(--nav-collapse) * 2.3)), 1);
+			transform: translateY(calc(-10px * var(--nav-collapse)));
+			will-change: opacity, transform;
+			max-height: clamp(0px, calc((1 - (var(--nav-collapse) * 2.3)) * 120px), 120px);
+			overflow: hidden;
+		}
+
+		.nav .brand span {
+			display: block;
+		}
+
+		.nav .nav-links {
+			gap: calc(14px * (1 - var(--nav-collapse)));
 		}
 
 		.nav-links {
@@ -312,8 +333,9 @@
 
 		.contribution-grid {
 			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-columns: 1fr;
 			gap: 18px;
+			max-width: 760px;
 		}
 
 		.payment-card {
@@ -442,15 +464,11 @@
 			scroll-behavior: smooth;
 			padding-bottom: 6px;
 			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
 		}
 
 		.carousel-track::-webkit-scrollbar {
-			height: 10px;
-		}
-
-		.carousel-track::-webkit-scrollbar-thumb {
-			background: rgba(80, 56, 44, 0.22);
-			border-radius: 999px;
+			display: none;
 		}
 
 		.carousel-slide {
@@ -497,7 +515,7 @@
 
 		.carousel-controls {
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
 			gap: 12px;
 			flex-wrap: wrap;
@@ -506,6 +524,34 @@
 		.carousel-actions {
 			display: flex;
 			gap: 10px;
+		}
+
+		.carousel-dots {
+			display: flex;
+			justify-content: flex-end;
+			gap: 8px;
+			flex-wrap: wrap;
+		}
+
+		.carousel-dot {
+			border: 0;
+			padding: 0;
+			width: 12px;
+			height: 12px;
+			border-radius: 999px;
+			background: rgba(80, 56, 44, 0.22);
+			cursor: pointer;
+			transition: transform 0.2s ease, background 0.2s ease, width 0.2s ease;
+		}
+
+		.carousel-dot:hover {
+			transform: translateY(-1px);
+			background: rgba(168, 107, 85, 0.5);
+		}
+
+		.carousel-dot.is-active {
+			width: 28px;
+			background: rgba(168, 107, 85, 0.78);
 		}
 
 		.carousel-button {
@@ -874,7 +920,6 @@
 				<div class="portrait">
 					<div class="portrait-content">
 						<h2>A day to celebrate.</h2>
-						<p>Please see the full invitation at the bottom of the page.</p>
 					</div>
 				</div>
 			</aside>
@@ -905,18 +950,10 @@
 
 		<section class="section" id="gallery">
 			<div class="section-head fade-up delay-1">
-				<h2>Our <i>slice of life</i></h2>
+				<h2><i>Our</i> <i>slice of life</i></h2>
 			</div>
 			<div class="gallery-shell fade-up delay-2">
 				<div class="carousel" data-carousel>
-					<div class="carousel-controls">
-						<div class="carousel-actions">
-							<button class="carousel-button" type="button" data-carousel-prev
-								aria-label="Previous photo">‹</button>
-							<button class="carousel-button" type="button" data-carousel-next
-								aria-label="Next photo">›</button>
-						</div>
-					</div>
 					<div class="carousel-viewport">
 						<div class="carousel-track" data-carousel-track>
 							<figure class="carousel-slide">
@@ -942,6 +979,9 @@
 							</figure>
 						
 						</div>
+					</div>
+					<div class="carousel-controls">
+						<div class="carousel-dots" data-carousel-dots aria-label="Gallery navigation"></div>
 					</div>
 				</div>
 			</div>
@@ -972,9 +1012,17 @@
 
 		<section class="section" id="contribute">
 			<div class="section-head fade-up delay-1">
-				<h2>Contribute to Our Wedding</h2>
+				<h2>Contribute to <i>Our</i> Wedding</h2>
 			</div>
 			<div class="contribution-grid">
+				<div class="payment-card fade-up delay-3">
+					<div class="eyebrow">Mobile Money</div>
+					<h3>Send via mobile money</h3>
+					<ul>
+						<li><strong>Name</strong> Carol Kyomuhendo</li>
+						<li><strong>Number</strong> +256782406100</li>
+					</ul>
+				</div>
 				<div class="payment-card fade-up delay-2">
 					<div class="eyebrow">UGX</div>
 					<h3>Bank transfer</h3>
@@ -984,6 +1032,12 @@
 						<li><strong>UGX branch</strong> Kikuubo</li>
 						<li><strong>UGX account number</strong> 1060009445327</li>
 						<li><strong>UGX Swift/BIC</strong> HFINUGKAXXX</li>
+					</ul>
+				</div>
+				<div class="payment-card fade-up delay-3">
+					<div class="eyebrow">GBP</div>
+					<h3>Bank transfer</h3>
+					<ul>
 						<li><strong>GBP account name</strong> Andrew Kwezi</li>
 						<li><strong>GBP bank</strong> Revolut Ltd</li>
 						<li><strong>GBP sort code</strong> 04-29-09</li>
@@ -992,20 +1046,12 @@
 						<li><strong>GBP IBAN</strong> GB18REVO00997086743069</li>
 					</ul>
 				</div>
-				<div class="payment-card fade-up delay-3">
-					<div class="eyebrow">Mobile Money</div>
-					<h3>Send via mobile money</h3>
-					<ul>
-						<li><strong>Name</strong> Carol Kyomuhendo</li>
-						<li><strong>Number</strong> +256782406100</li>
-					</ul>
-				</div>
 			</div>
 		</section>
 
 		<section class="section" id="FAQs">
 			<div class="section-head fade-up delay-1">
-				<h2>FAQs</h2>
+				<h2><i>FAQs</i></h2>
 			</div>
 			<div class="faq-grid">
 				<div class="faq-item fade-up delay-2">
@@ -1038,7 +1084,7 @@
 
 		<section class="section" id="registry-countdown">
 			<div class="section-head fade-up delay-1">
-				<h2>Countdown & Note</h2>
+				<h2><i>Countdown</i> & Note</h2>
 			</div>
 			<div class="bottom-widgets">
 				<div class="card countdown-widget fade-up delay-2">
@@ -1048,7 +1094,7 @@
 				</div>
 				<div class="panel fade-up delay-3">
 					<div class="eyebrow">A note from the couple</div>
-					<h3>Thank you for being part of our day</h3>
+					<h3>Thank you for being part of <i>our</i> day</h3>
 					<p>
 						Your presence is the greatest gift. Whether you are traveling from across town or across the
 						world, we are honored to celebrate with you.
@@ -1067,22 +1113,157 @@
 		const carousel = document.querySelector("[data-carousel]");
 		if (carousel) {
 			const track = carousel.querySelector("[data-carousel-track]");
-			const prevButton = carousel.querySelector("[data-carousel-prev]");
-			const nextButton = carousel.querySelector("[data-carousel-next]");
-			const scrollAmount = () => track.querySelector(".carousel-slide")?.offsetWidth ?? track.clientWidth * 0.85;
+			const slides = Array.from(track.querySelectorAll(".carousel-slide"));
+			const dotsContainer = carousel.querySelector("[data-carousel-dots]");
 
-			prevButton.addEventListener("click", () => {
-				track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
-			});
+			if (dotsContainer) {
+				dotsContainer.innerHTML = "";
+				const dots = slides.map((slide, index) => {
+					const dot = document.createElement("button");
+					dot.type = "button";
+					dot.className = "carousel-dot";
+					dot.setAttribute("aria-label", `Go to photo ${index + 1}`);
+					dot.addEventListener("click", () => {
+						slide.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+					});
+					dotsContainer.appendChild(dot);
+					return dot;
+				});
 
-			nextButton.addEventListener("click", () => {
-				track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
-			});
+				const updateDots = () => {
+					const trackCenter = track.scrollLeft + track.clientWidth / 2;
+					let activeIndex = 0;
+					let smallestDistance = Infinity;
+
+					slides.forEach((slide, index) => {
+						const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+						const distance = Math.abs(slideCenter - trackCenter);
+						if (distance < smallestDistance) {
+							smallestDistance = distance;
+							activeIndex = index;
+						}
+					});
+
+					dots.forEach((dot, index) => {
+						dot.classList.toggle("is-active", index === activeIndex);
+						if (index === activeIndex) {
+							dot.setAttribute("aria-current", "true");
+						} else {
+							dot.removeAttribute("aria-current");
+						}
+					});
+				};
+
+				track.addEventListener("scroll", () => window.requestAnimationFrame(updateDots), { passive: true });
+				window.addEventListener("resize", updateDots);
+				updateDots();
+			}
 		}
 
 		const weddingDate = new Date("2027-01-02T00:00:00+03:00");
 		const countdownNav = document.getElementById("countdown-nav");
 		const countdownWidget = document.getElementById("countdown-widget");
+		const topNav = document.querySelector(".nav");
+		const navTriggerDistance = 40;
+		const navToggleDuration = 360;
+		let scrollTicking = false;
+		let lastScrollY = window.scrollY;
+		let navAnimationFrame = null;
+		let navAnimationStartTime = 0;
+		let navAnimationFrom = 0;
+		let navAnimationTo = 0;
+		let navCollapseValue = 0;
+		let scrollTravel = 0;
+		let scrollDirection = 0;
+
+		function setNavCollapse(value) {
+			navCollapseValue = Math.min(1, Math.max(0, value));
+			if (topNav) {
+				topNav.style.setProperty("--nav-collapse", navCollapseValue.toFixed(3));
+			}
+		}
+
+		function cancelNavAnimation() {
+			if (navAnimationFrame !== null) {
+				window.cancelAnimationFrame(navAnimationFrame);
+				navAnimationFrame = null;
+			}
+		}
+
+		function animateNavToggle() {
+			const progress = Math.min(1, (performance.now() - navAnimationStartTime) / navToggleDuration);
+			const nextValue = navAnimationFrom + ((navAnimationTo - navAnimationFrom) * progress);
+			setNavCollapse(nextValue);
+
+			if (progress < 1) {
+				navAnimationFrame = window.requestAnimationFrame(animateNavToggle);
+			} else {
+				navAnimationFrame = null;
+				setNavCollapse(navAnimationTo);
+			}
+		}
+
+		function startNavToggleAnimation(target) {
+			if (!topNav) {
+				return;
+			}
+
+			cancelNavAnimation();
+			navAnimationFrom = navCollapseValue;
+			navAnimationTo = target;
+
+			if (Math.abs(navAnimationTo - navAnimationFrom) < 0.001) {
+				setNavCollapse(target);
+				return;
+			}
+
+			navAnimationStartTime = performance.now();
+			navAnimationFrame = window.requestAnimationFrame(animateNavToggle);
+		}
+
+		function updateTopNavVisibility() {
+			if (!topNav) {
+				return;
+			}
+
+			const currentScrollY = window.scrollY;
+			const deltaY = currentScrollY - lastScrollY;
+			const direction = Math.sign(deltaY);
+
+			if (direction !== 0 && direction !== scrollDirection) {
+				scrollDirection = direction;
+				scrollTravel = 0;
+			}
+
+			if (direction !== 0) {
+				scrollTravel += Math.abs(deltaY);
+				if (direction > 0 && scrollTravel >= navTriggerDistance && navAnimationTo !== 1) {
+					startNavToggleAnimation(1);
+					scrollTravel = 0;
+				} else if (direction < 0 && scrollTravel >= navTriggerDistance && navAnimationTo !== 0) {
+					startNavToggleAnimation(0);
+					scrollTravel = 0;
+				}
+			}
+
+			lastScrollY = currentScrollY;
+			scrollTicking = false;
+		}
+
+		window.addEventListener("scroll", () => {
+			if (scrollTicking) {
+				return;
+			}
+
+			scrollTicking = true;
+			window.requestAnimationFrame(updateTopNavVisibility);
+		}, { passive: true });
+
+		window.addEventListener("resize", () => {
+			window.requestAnimationFrame(updateTopNavVisibility);
+		});
+
+		updateTopNavVisibility();
 
 		function updateCountdown() {
 			const now = new Date();
