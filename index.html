@@ -536,6 +536,27 @@
 			box-shadow: var(--shadow);
 		}
 
+		.bottom-widgets {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 18px;
+		}
+
+		.countdown-widget {
+			display: grid;
+			align-content: start;
+			gap: 8px;
+		}
+
+		.countdown-widget h3 {
+			font-size: clamp(2.2rem, 4vw, 3.6rem);
+			margin-bottom: 4px;
+		}
+
+		.countdown-widget p {
+			margin: 0;
+		}
+
 		.story-box p {
 			line-height: 1.8;
 			margin-bottom: 14px;
@@ -786,12 +807,24 @@
 			}
 
 			.carousel-slide {
-				flex-basis: 92%;
-				min-height: 320px;
+				flex-basis: 100%;
+				min-height: 250px;
+			}
+
+			.carousel-caption strong {
+				font-size: 1.5rem;
+			}
+
+			.carousel-caption span {
+				font-size: 0.95rem;
 			}
 
 			.portrait {
 				min-height: 360px;
+			}
+
+			.bottom-widgets {
+				grid-template-columns: 1fr;
 			}
 
 			h1 {
@@ -811,7 +844,7 @@
 			<nav class="nav-links" aria-label="Primary">
 				<a href="#story">Our Story</a>
 				<a href="#gallery">Gallery</a>
-				<a href="#details">Details</a>
+				<a href="#invitation">Invitation</a>
 				<a href="#contribute">Contribute</a>
 				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
 					target="_blank">
@@ -840,9 +873,8 @@
 			<aside class="hero-visual fade-up delay-2">
 				<div class="portrait">
 					<div class="portrait-content">
-						<h2>Formal Invitation to follow.</h2>
-						<p>Please wait for further details.</p>
-						<p><strong id="countdown-hero">Countdown loading...</strong></p>
+						<h2>A day to celebrate.</h2>
+						<p>Please see the full invitation at the bottom of the page.</p>
 					</div>
 				</div>
 			</aside>
@@ -868,15 +900,6 @@
 						“Whatever our souls are made of, his and mine are the same.”
 					</blockquote>
 				</div>
-				<div class="story-box fade-up delay-3">
-					<div class="eyebrow">A note from the couple</div>
-					<h3>Thank you for being part of our day</h3>
-					<p>
-						Your presence is the greatest gift. Whether you are traveling from across town or across the
-						world,
-						we are honored to celebrate with you.
-					</p>
-				</div>
 			</div>
 		</section>
 
@@ -899,15 +922,15 @@
 							<figure class="carousel-slide">
 								<img src="images/photo-1.jpg" alt="A couple smiling together in formal wedding attire">
 								<figcaption class="carousel-caption">
-									<strong>date or something</strong>
-									<span>caption.</span>
+									<strong>March 2024</strong>
+									<span>Visited Amsterdam for Oj's birthday.</span>
 								</figcaption>
 							</figure>
 							<figure class="carousel-slide">
 								<img src="images/photo-2.jpg" alt="A romantic couple portrait outdoors with warm light">
 								<figcaption class="carousel-caption">
-									<strong>beach portrait</strong>
-									<span>caption.</span>
+									<strong>Aqaba, Jordan</strong>
+									<span>Beaching in Aqaba, Jordan.</span>
 								</figcaption>
 							</figure>
 							<figure class="carousel-slide">
@@ -924,28 +947,26 @@
 			</div>
 		</section>
 
-		<section class="section" id="details">
+		<section class="section" id="invitation">
 			<div class="section-head fade-up delay-1">
 				<h2>Invitation</h2>
 			</div>
-			<div class="info-grid">
-				<div class="panel fade-up delay-2">
-					<h3>Invitation note</h3>
-					<ul class="list">
-						<li>
-							<strong>Wedding date</strong>
-							2 Jan 2027
-						</li>
-						<li>
-							<strong>Location</strong>
-							Kampala, Uganda
-						</li>
-						<li>
-							<strong>Formal invitation</strong>
-							To follow.
-						</li>
-					</ul>
-				</div>
+			<div class="panel fade-up delay-2">
+				<h3>Invitation note</h3>
+				<ul class="list">
+					<li>
+						<strong>Wedding date</strong>
+						2 Jan 2027
+					</li>
+					<li>
+						<strong>Location</strong>
+						Kampala, Uganda
+					</li>
+					<li>
+						<strong>Formal invitation</strong>
+						To follow.
+					</li>
+				</ul>
 			</div>
 		</section>
 
@@ -958,35 +979,17 @@
 					<div class="eyebrow">UGX</div>
 					<h3>Bank transfer</h3>
 					<ul>
-						<li><strong>Account name</strong> Carol Bazirake Kyomuhendo</li>
-						<li><strong>Bank</strong> Housing Finance Bank Uganda</li>
-						<li><strong>Branch</strong> Kikuubo</li>
-						<li><strong>Account number</strong> 1060009445327</li>
-						<li><strong>Swift/BIC</strong> HFINUGKAXXX</li>
-					</ul>
-				</div>
-				<div class="payment-card fade-up delay-2">
-					<div class="eyebrow">GBP</div>
-					<h3>International transfers</h3>
-					<ul>
-						<li><strong>Account name</strong> Andrew Kwezi</li>
-						<li><strong>Bank</strong> Revolut Ltd</li>
-						<li><strong>Sort code</strong> 04-29-09</li>
-						<li><strong>Account no</strong> 36562424</li>
-						<li><strong>SWIFT/BIC</strong> REVOGB21</li>
-						<li><strong>IBAN</strong> GB18REVO00997086743069</li>
-					</ul>
-				</div>
-				<div class="payment-card fade-up delay-3">
-					<div class="eyebrow">GBP / USD</div>
-					<h3>Revolut account</h3>
-					<ul>
-						<li><strong>Account name</strong> Carol Bazirake Kyomuhendo</li>
-						<li><strong>Bank</strong> Revolut Ltd</li>
-						<li><strong>Sort code</strong> 04-29-09</li>
-						<li><strong>Account no</strong> 38900874</li>
-						<li><strong>SWIFT/BIC</strong> REVOGB21</li>
-						<li><strong>IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+						<li><strong>UGX account name</strong> Carol Bazirake Kyomuhendo</li>
+						<li><strong>UGX bank</strong> Housing Finance Bank Uganda</li>
+						<li><strong>UGX branch</strong> Kikuubo</li>
+						<li><strong>UGX account number</strong> 1060009445327</li>
+						<li><strong>UGX Swift/BIC</strong> HFINUGKAXXX</li>
+						<li><strong>GBP account name</strong> Andrew Kwezi</li>
+						<li><strong>GBP bank</strong> Revolut Ltd</li>
+						<li><strong>GBP sort code</strong> 04-29-09</li>
+						<li><strong>GBP account no</strong> 36562424</li>
+						<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
+						<li><strong>GBP IBAN</strong> GB18REVO00997086743069</li>
 					</ul>
 				</div>
 				<div class="payment-card fade-up delay-3">
@@ -995,15 +998,14 @@
 					<ul>
 						<li><strong>Name</strong> Carol Kyomuhendo</li>
 						<li><strong>Number</strong> +256782406100</li>
-						<li><strong>Gift registry</strong> Use the same bank and mobile money details above.</li>
 					</ul>
 				</div>
 			</div>
 		</section>
 
 		<section class="section" id="FAQs">
-
-
+			<div class="section-head fade-up delay-1">
+				<h2>FAQs</h2>
 			</div>
 			<div class="faq-grid">
 				<div class="faq-item fade-up delay-2">
@@ -1032,6 +1034,26 @@
 						for the full event.</p>
 				</div>
 			</div>
+		</section>
+
+		<section class="section" id="registry-countdown">
+			<div class="section-head fade-up delay-1">
+				<h2>Countdown & Note</h2>
+			</div>
+			<div class="bottom-widgets">
+				<div class="card countdown-widget fade-up delay-2">
+					<div class="eyebrow">Countdown</div>
+					<h3 id="countdown-widget">Countdown loading...</h3>
+					<p>We are counting down to the wedding here.</p>
+				</div>
+				<div class="panel fade-up delay-3">
+					<div class="eyebrow">A note from the couple</div>
+					<h3>Thank you for being part of our day</h3>
+					<p>
+						Your presence is the greatest gift. Whether you are traveling from across town or across the
+						world, we are honored to celebrate with you.
+					</p>
+				</div>
 			</div>
 		</section>
 
@@ -1060,7 +1082,7 @@
 
 		const weddingDate = new Date("2027-01-02T00:00:00+03:00");
 		const countdownNav = document.getElementById("countdown-nav");
-		const countdownHero = document.getElementById("countdown-hero");
+		const countdownWidget = document.getElementById("countdown-widget");
 
 		function updateCountdown() {
 			const now = new Date();
@@ -1068,7 +1090,7 @@
 			if (diff <= 0) {
 				const finishedText = "We are married";
 				if (countdownNav) countdownNav.textContent = finishedText;
-				if (countdownHero) countdownHero.textContent = finishedText;
+				if (countdownWidget) countdownWidget.textContent = finishedText;
 				return;
 			}
 
@@ -1078,7 +1100,7 @@
 			const countdownText = `${totalDays}d ${hours}h ${minutes}m`;
 
 			if (countdownNav) countdownNav.textContent = countdownText;
-			if (countdownHero) countdownHero.textContent = countdownText;
+			if (countdownWidget) countdownWidget.textContent = countdownText;
 		}
 
 		updateCountdown();
