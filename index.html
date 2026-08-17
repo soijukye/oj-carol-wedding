@@ -72,7 +72,7 @@
 			justify-content: flex-start;
 			align-items: center;
 			gap: calc(16px - 10px * var(--nav-collapse));
-			padding: calc(18px - 12px * var(--nav-collapse)) calc(22px - 10px * var(--nav-collapse));
+			padding: calc(18px - 12px * var(--nav-collapse));
 			width: calc(100% - (var(--nav-collapse) * (100% - 180px)));
 			border: 1px solid var(--border);
 			border-radius: calc(24px - 10px * var(--nav-collapse));
@@ -85,10 +85,19 @@
 			margin-bottom: 24px;
 		}
 
+		@media (min-width: 721px) {
+			.nav {
+				padding: 18px;
+				gap: 16px;
+				min-height: 78px;
+			}
+		}
+
 		.brand {
 			display: flex;
 			flex-direction: column;
 			gap: 2px;
+			flex-shrink: 0;
 		}
 
 		.brand strong {
@@ -124,6 +133,7 @@
 
 		.nav .nav-links {
 			gap: calc(14px * (1 - var(--nav-collapse)));
+			margin-left: auto;
 		}
 
 		.nav-links {
@@ -832,7 +842,24 @@
 				padding: 16px;
 				border-radius: 20px;
 				flex-direction: column;
-				align-items: start;
+				align-items: flex-start;
+				gap: 12px;
+			}
+
+			.brand {
+				min-width: 0;
+			}
+
+			.nav .nav-links {
+				margin-left: 0;
+				flex-wrap: wrap;
+				gap: 10px;
+				overflow-x: visible;
+				-webkit-overflow-scrolling: auto;
+			}
+
+			.nav-links a {
+				flex: 0 0 auto;
 			}
 
 			.hero-copy {
@@ -885,7 +912,6 @@
 		<header class="nav fade-up">
 			<div class="brand">
 				<strong>Oj & Carol</strong>
-				<span id="countdown-nav">Countdown loading...</span>
 			</div>
 			<nav class="nav-links" aria-label="Primary">
 				<a href="#story">Our Story</a>
@@ -1161,7 +1187,6 @@
 		}
 
 		const weddingDate = new Date("2027-01-02T00:00:00+03:00");
-		const countdownNav = document.getElementById("countdown-nav");
 		const countdownWidget = document.getElementById("countdown-widget");
 		const topNav = document.querySelector(".nav");
 		const navTriggerDistance = 40;
@@ -1270,7 +1295,6 @@
 			const diff = weddingDate - now;
 			if (diff <= 0) {
 				const finishedText = "We are married";
-				if (countdownNav) countdownNav.textContent = finishedText;
 				if (countdownWidget) countdownWidget.textContent = finishedText;
 				return;
 			}
@@ -1280,7 +1304,6 @@
 			const minutes = Math.floor((diff / (1000 * 60)) % 60);
 			const countdownText = `${totalDays}d ${hours}h ${minutes}m`;
 
-			if (countdownNav) countdownNav.textContent = countdownText;
 			if (countdownWidget) countdownWidget.textContent = countdownText;
 		}
 
