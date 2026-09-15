@@ -345,16 +345,29 @@
 			display: grid;
 			grid-template-columns: 1fr;
 			gap: 18px;
-			max-width: 760px;
+			width: 100%;
+			max-width: none;
+			align-items: stretch;
+		}
+
+		.international-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 18px;
+			width: 100%;
 		}
 
 		.payment-card {
-			padding: 24px;
+			display: flex;
+			flex-direction: column;
+			padding: 28px;
 			border-radius: 28px;
 			background: rgba(255, 252, 248, 0.84);
 			border: 1px solid var(--border);
 			box-shadow: var(--shadow);
 			min-width: 0;
+			min-height: 360px;
+			height: 100%;
 		}
 
 		.payment-card h3 {
@@ -370,6 +383,7 @@
 			margin: 0;
 			display: grid;
 			gap: 10px;
+			margin-top: auto;
 		}
 
 		.payment-card li {
@@ -469,6 +483,7 @@
 
 		.carousel-track {
 			display: flex;
+			align-items: flex-start;
 			gap: 16px;
 			overflow-x: auto;
 			scroll-snap-type: x mandatory;
@@ -835,9 +850,21 @@
 		}
 
 		@media (min-width: 961px) {
+			.international-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
 			.carousel-slide {
-				height: min(72vh, 680px);
+				flex: 0 0 auto;
+				width: auto;
+				height: min(60vh, 600px);
 				min-height: 0;
+			}
+
+			.carousel-slide img {
+				width: auto;
+				height: 100%;
+				max-width: none;
 			}
 		}
 
@@ -1073,17 +1100,41 @@
 						<li><strong>UGX Swift/BIC</strong> HFINUGKAXXX</li>
 					</ul>
 				</div>
-				<div class="payment-card fade-up delay-3">
-					<div class="eyebrow">GBP</div>
-					<h3>Bank transfer</h3>
-					<ul>
-						<li><strong>GBP account name</strong> Andrew Kwezi</li>
-						<li><strong>GBP bank</strong> Revolut Ltd</li>
-						<li><strong>GBP sort code</strong> 04-29-09</li>
-						<li><strong>GBP account no</strong> 36562424</li>
-						<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
-						<li><strong>GBP IBAN</strong> GB18REVO00997086743069</li>
-					</ul>
+				<div class="international-grid">
+					<div class="payment-card fade-up delay-3">
+						<div class="eyebrow">GBP</div>
+						<h3>Bank transfer</h3>
+						<ul>
+							<li><strong>GBP account name</strong> Andrew Kwezi</li>
+							<li><strong>GBP bank</strong> Revolut Ltd</li>
+							<li><strong>GBP sort code</strong> 04-29-09</li>
+							<li><strong>GBP account no</strong> 36562424</li>
+							<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
+							<li><strong>GBP IBAN</strong> GB18REVO00997086743069</li>
+						</ul>
+					</div>
+					<div class="payment-card fade-up delay-2">
+						<div class="eyebrow">GBP</div>
+						<h3>Bank transfer</h3>
+						<ul>
+							<li><strong>GBP account name</strong> Carol Bazirake Kyomuhendo</li>
+							<li><strong>GBP bank</strong> Revolut Ltd</li>
+							<li><strong>GBP sort code</strong> 04-29-09</li>
+							<li><strong>GBP account no</strong> 38900874</li>
+							<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
+							<li><strong>GBP IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+						</ul>
+					</div>
+					<div class="payment-card fade-up delay-3">
+						<div class="eyebrow">USD</div>
+						<h3>Bank transfer</h3>
+						<ul>
+							<li><strong>USD account name</strong> Carol Bazirake Kyomuhendo</li>
+							<li><strong>USD bank</strong> Revolut Ltd</li>
+							<li><strong>USD SWIFT/BIC</strong> REVOGB21</li>
+							<li><strong>USD IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>
