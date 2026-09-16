@@ -118,7 +118,8 @@
 		}
 
 		.nav .brand span,
-		.nav .nav-links {
+		.nav .nav-links,
+		.nav .nav-countdown {
 			white-space: nowrap;
 			opacity: clamp(0, calc(1 - (var(--nav-collapse) * 2.3)), 1);
 			transform: translateY(calc(-10px * var(--nav-collapse)));
@@ -133,7 +134,35 @@
 
 		.nav .nav-links {
 			gap: calc(14px * (1 - var(--nav-collapse)));
+		}
+
+		.nav-countdown {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 4px;
 			margin-left: auto;
+			padding: 10px 14px;
+			border-radius: 18px;
+			background: rgba(168, 107, 85, 0.08);
+			border: 1px solid rgba(168, 107, 85, 0.16);
+			min-width: 132px;
+		}
+
+		.nav-countdown-label {
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.2em;
+			font-weight: 700;
+			color: var(--muted);
+		}
+
+		.nav-countdown-value {
+			font-family: "Playfair Display", serif;
+			font-size: 1.2rem;
+			font-weight: 700;
+			line-height: 1;
+			white-space: nowrap;
 		}
 
 		.nav-links {
@@ -355,6 +384,13 @@
 			grid-template-columns: 1fr;
 			gap: 18px;
 			width: 100%;
+			align-items: start;
+		}
+
+		.international-stack {
+			display: grid;
+			gap: 18px;
+			align-content: start;
 		}
 
 		.payment-card {
@@ -366,8 +402,8 @@
 			border: 1px solid var(--border);
 			box-shadow: var(--shadow);
 			min-width: 0;
-			min-height: 360px;
-			height: 100%;
+			min-height: 300px;
+			height: auto;
 		}
 
 		.payment-card h3 {
@@ -383,7 +419,6 @@
 			margin: 0;
 			display: grid;
 			gap: 10px;
-			margin-top: auto;
 		}
 
 		.payment-card li {
@@ -402,6 +437,16 @@
 			color: var(--text);
 			margin-bottom: 4px;
 			overflow-wrap: anywhere;
+		}
+
+		.thank-you-card {
+			min-height: 170px;
+			padding-bottom: 22px;
+		}
+
+		.thank-you-card p {
+			margin: 0;
+			line-height: 1.65;
 		}
 
 		.card,
@@ -630,6 +675,11 @@
 			margin: 0;
 		}
 
+		.countdown-flash {
+			animation: countdownGlow 2s ease-in-out infinite;
+			text-shadow: 0 0 10px rgba(168, 107, 85, 0.28);
+		}
+
 		.story-box p {
 			line-height: 1.8;
 			margin-bottom: 14px;
@@ -820,6 +870,26 @@
 			}
 		}
 
+		@keyframes countdownGlow {
+			0% {
+				opacity: 1;
+				transform: scale(1);
+				text-shadow: 0 0 0 rgba(168, 107, 85, 0);
+			}
+
+			50% {
+				opacity: 0.72;
+				transform: scale(1.015);
+				text-shadow: 0 0 18px rgba(168, 107, 85, 0.42);
+			}
+
+			100% {
+				opacity: 1;
+				transform: scale(1);
+				text-shadow: 0 0 0 rgba(168, 107, 85, 0);
+			}
+		}
+
 		@media (max-width: 960px) {
 
 			.hero,
@@ -894,6 +964,11 @@
 				-webkit-overflow-scrolling: auto;
 			}
 
+			.nav-countdown {
+				margin-left: 0;
+				align-items: flex-start;
+			}
+
 			.nav-links a {
 				flex: 0 0 auto;
 			}
@@ -952,6 +1027,10 @@
 		<header class="nav fade-up">
 			<div class="brand">
 				<strong>Oj & Carol</strong>
+			</div>
+			<div class="nav-countdown">
+				<span class="nav-countdown-label">Countdown</span>
+				<strong id="topbar-countdown" class="nav-countdown-value">Loading...</strong>
 			</div>
 			<nav class="nav-links" aria-label="Primary">
 				<a href="#story">Our Story</a>
@@ -1125,15 +1204,23 @@
 							<li><strong>GBP IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
 						</ul>
 					</div>
-					<div class="payment-card fade-up delay-3">
-						<div class="eyebrow">USD</div>
-						<h3>Bank transfer</h3>
-						<ul>
-							<li><strong>USD account name</strong> Carol Bazirake Kyomuhendo</li>
-							<li><strong>USD bank</strong> Revolut Ltd</li>
-							<li><strong>USD SWIFT/BIC</strong> REVOGB21</li>
-							<li><strong>USD IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
-						</ul>
+					<div class="international-stack">
+						<div class="payment-card fade-up delay-3">
+							<div class="eyebrow">USD</div>
+							<h3>Bank transfer</h3>
+							<ul>
+								<li><strong>USD account name</strong> Carol Bazirake Kyomuhendo</li>
+								<li><strong>USD bank</strong> Revolut Ltd</li>
+								<li><strong>USD SWIFT/BIC</strong> REVOGB21</li>
+								<li><strong>USD IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+							</ul>
+						</div>
+						<div class="payment-card thank-you-card fade-up delay-2">
+							<div class="eyebrow">Thank you</div>
+							<p>
+								Thank you for celebrating with us. Your presence means the world to us.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1256,6 +1343,7 @@
 
 		const weddingDate = new Date("2027-01-02T00:00:00+03:00");
 		const countdownWidget = document.getElementById("countdown-widget");
+		const topbarCountdown = document.getElementById("topbar-countdown");
 		const topNav = document.querySelector(".nav");
 		const navTriggerDistance = 40;
 		const navToggleDuration = 360;
@@ -1364,19 +1452,28 @@
 			if (diff <= 0) {
 				const finishedText = "We are married";
 				if (countdownWidget) countdownWidget.textContent = finishedText;
+				if (topbarCountdown) topbarCountdown.textContent = finishedText;
 				return;
 			}
 
 			const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
 			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
 			const minutes = Math.floor((diff / (1000 * 60)) % 60);
-			const countdownText = `${totalDays}d ${hours}h ${minutes}m`;
+			const seconds = Math.floor((diff / 1000) % 60);
+			const countdownText = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
 
-			if (countdownWidget) countdownWidget.textContent = countdownText;
+			if (countdownWidget) {
+				countdownWidget.textContent = countdownText;
+				countdownWidget.classList.add("countdown-flash");
+			}
+
+			if (topbarCountdown) {
+				topbarCountdown.textContent = countdownText;
+			}
 		}
 
 		updateCountdown();
-		setInterval(updateCountdown, 60000);
+		setInterval(updateCountdown, 1000);
 		const rsvpForm = document.getElementById("rsvpForm");
 
 		if (rsvpForm) {
