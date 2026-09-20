@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="A romantic wedding website with event details, RSVP, and travel information.">
-	<title>Oj & Carol | Wedding</title>
+	<title>Oj &amp; Carol | Wedding</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
@@ -14,8 +14,6 @@
 	<style>
 		:root {
 			--bg: #f7f1ea;
-			--bg-soft: #efe4d7;
-			--surface: rgba(255, 252, 248, 0.82);
 			--text: #2f241d;
 			--muted: #6f5e52;
 			--accent: #a86b55;
@@ -32,147 +30,79 @@
 			scroll-behavior: smooth;
 		}
 
-		section {
-			scroll-margin-top: 110px;
-		}
-
 		body {
 			margin: 0;
 			font-family: Inter, sans-serif;
 			color: var(--text);
-			background:
-				radial-gradient(circle at top left, rgba(168, 107, 85, 0.18), transparent 28%),
-				radial-gradient(circle at 85% 10%, rgba(111, 134, 114, 0.18), transparent 24%),
-				linear-gradient(180deg, #fbf8f4 0%, var(--bg) 42%, #f6eee4 100%);
+			background: var(--bg);
 			min-height: 100vh;
 		}
 
-		body::before {
-			content: "";
-			position: fixed;
-			inset: 0;
-			pointer-events: none;
-			background-image: linear-gradient(rgba(47, 36, 29, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(47, 36, 29, 0.03) 1px, transparent 1px);
-			background-size: 34px 34px;
-			mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
-			opacity: 0.55;
+		:focus-visible {
+			outline: 3px solid rgba(168, 107, 85, 0.75);
+			outline-offset: 3px;
 		}
 
-		.page {
-			width: min(1160px, calc(100% - 32px));
-			margin: 0 auto;
-			padding: 24px 0 56px;
-			position: relative;
-			z-index: 1;
+		h1,
+		h2,
+		h3 {
+			font-family: "Playfair Display", serif;
+			font-weight: 600;
 		}
+
+		img {
+			max-width: 100%;
+			display: block;
+		}
+
+		/* ---------- Nav ---------- */
 
 		.nav {
 			--nav-collapse: 0;
 			display: flex;
-			justify-content: flex-start;
 			align-items: center;
+			justify-content: center;
 			gap: calc(16px - 10px * var(--nav-collapse));
-			padding: calc(18px - 12px * var(--nav-collapse));
-			width: calc(100% - (var(--nav-collapse) * (100% - 180px)));
+			padding: calc(16px - 8px * var(--nav-collapse)) 24px;
+			width: calc(100% - (var(--nav-collapse) * (100% - 200px)));
+			max-width: 1160px;
+			margin: 16px auto 0;
 			border: 1px solid var(--border);
-			border-radius: calc(24px - 10px * var(--nav-collapse));
-			background: rgba(255, 251, 246, 0.72);
+			border-radius: calc(22px - 8px * var(--nav-collapse));
+			background: rgba(255, 251, 246, 0.78);
 			backdrop-filter: blur(18px);
 			box-shadow: 0 12px 30px rgba(74, 53, 41, 0.08);
 			position: sticky;
 			top: 16px;
-			z-index: 20;
-			margin-bottom: 24px;
-		}
-
-		@media (min-width: 721px) {
-			.nav {
-				padding: 18px;
-				gap: 16px;
-				min-height: 78px;
-			}
-		}
-
-		.brand {
-			display: flex;
-			flex-direction: column;
-			gap: 2px;
-			flex-shrink: 0;
-		}
-
-		.brand strong {
-			font-family: "Playfair Display", serif;
-			font-size: 1.7rem;
-			letter-spacing: 0.04em;
-			line-height: 1;
-			white-space: nowrap;
-		}
-
-		.brand span,
-		.nav-links a,
-		.eyebrow,
-		.label,
-		.meta,
-		.subtle {
-			color: var(--muted);
-		}
-
-		.nav .brand span,
-		.nav .nav-links,
-		.nav .nav-countdown {
-			white-space: nowrap;
-			opacity: clamp(0, calc(1 - (var(--nav-collapse) * 2.3)), 1);
-			transform: translateY(calc(-10px * var(--nav-collapse)));
-			will-change: opacity, transform;
-			max-height: clamp(0px, calc((1 - (var(--nav-collapse) * 2.3)) * 120px), 120px);
+			z-index: 30;
 			overflow: hidden;
 		}
 
-		.nav .brand span {
-			display: block;
-		}
-
-		.nav .nav-links {
-			gap: calc(14px * (1 - var(--nav-collapse)));
-		}
-
-		.nav-countdown {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-end;
-			gap: 4px;
-			margin-left: auto;
-			padding: 10px 14px;
-			border-radius: 18px;
-			background: rgba(168, 107, 85, 0.08);
-			border: 1px solid rgba(168, 107, 85, 0.16);
-			min-width: 132px;
-		}
-
-		.nav-countdown-label {
-			font-size: 0.72rem;
-			text-transform: uppercase;
-			letter-spacing: 0.2em;
-			font-weight: 700;
-			color: var(--muted);
-		}
-
-		.nav-countdown-value {
-			font-family: "Playfair Display", serif;
-			font-size: 1.2rem;
-			font-weight: 700;
-			line-height: 1;
+		.brand strong {
+			font-size: 1.4rem;
+			letter-spacing: 0.03em;
 			white-space: nowrap;
+		}
+
+		.nav-links,
+		.nav-countdown {
+			white-space: nowrap;
+			opacity: clamp(0, calc(1 - (var(--nav-collapse) * 2.3)), 1);
+			max-width: clamp(0px, calc((1 - (var(--nav-collapse) * 2.3)) * 520px), 520px);
+			overflow: hidden;
+			transition: opacity 0.2s ease;
 		}
 
 		.nav-links {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 14px;
-			font-size: 0.95rem;
+			gap: 16px;
+			font-size: 0.92rem;
+			margin-left: 8px;
 		}
 
 		.nav-links a {
+			color: var(--muted);
 			text-decoration: none;
 			transition: color 0.2s ease;
 		}
@@ -181,93 +111,132 @@
 			color: var(--accent);
 		}
 
-		.hero {
-			display: grid;
-			grid-template-columns: 1.1fr 0.9fr;
-			gap: 24px;
-			align-items: stretch;
-			margin-bottom: 26px;
+		.nav-countdown {
+			margin-left: auto;
+			text-align: right;
+			flex-shrink: 0;
 		}
 
-		.hero-copy,
-		.card,
-		.panel,
-		.timeline-item,
-		.rsvp,
-		.faq-item {
-			border: 1px solid var(--border);
-			border-radius: 28px;
-			background: var(--surface);
-			backdrop-filter: blur(16px);
-			box-shadow: var(--shadow);
-		}
-
-		.contact-list {
-			display: grid;
-			gap: 14px;
-			margin: 0;
-		}
-
-		.contact-list strong {
+		.nav-countdown-label {
 			display: block;
-			margin-bottom: 4px;
+			font-size: 0.68rem;
+			text-transform: uppercase;
+			letter-spacing: 0.18em;
+			color: var(--muted);
 		}
 
-		.contact-list a {
-			color: var(--accent);
-			text-decoration: none;
+		.nav-countdown-value {
+			font-family: "Playfair Display", serif;
+			font-weight: 700;
+			font-size: 1.05rem;
 		}
 
-		.contact-list a:hover {
-			text-decoration: underline;
+		/* ---------- Editorial flow ---------- */
+
+		.prose {
+			width: min(680px, calc(100% - 40px));
+			margin: 0 auto;
 		}
 
-
-		.hero-copy {
-			padding: 42px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			min-height: 620px;
-			position: relative;
-			overflow: hidden;
+		.prose p {
+			font-size: 1.08rem;
+			line-height: 1.85;
+			color: var(--muted);
+			margin: 0 0 20px;
 		}
 
-		.hero-copy::after {
-			content: "";
-			position: absolute;
-			inset: auto -60px -80px auto;
-			width: 240px;
-			height: 240px;
-			background: radial-gradient(circle, rgba(168, 107, 85, 0.18), transparent 68%);
-			filter: blur(8px);
+		.prose blockquote {
+			margin: 40px 0 8px;
+			padding: 0 0 0 26px;
+			border-left: 3px solid var(--accent);
+			font-family: "Playfair Display", serif;
+			font-style: italic;
+			font-size: 1.35rem;
+			line-height: 1.6;
+			color: var(--text);
 		}
 
-		.eyebrow {
+		.prose cite {
+			display: block;
+			padding-left: 29px;
+			font-style: normal;
+			font-size: 0.85rem;
+			color: var(--muted);
+			letter-spacing: 0.02em;
+		}
+
+		.prose h2 {
+			font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+			margin: 0 0 22px;
+			font-weight: 500;
+		}
+
+		.kicker {
+			display: block;
 			font-size: 0.82rem;
 			text-transform: uppercase;
-			letter-spacing: 0.22em;
-			font-weight: 700;
-			margin-bottom: 16px;
+			letter-spacing: 0.2em;
+			color: var(--accent);
+			margin-bottom: 14px;
+			font-weight: 600;
 		}
 
-		h1,
-		h2,
-		h3 {
-			font-family: "Playfair Display", serif;
+		/* ---------- Hero ---------- */
+
+		.hero {
+			position: relative;
+			margin: 20px auto 0;
+			width: min(1160px, calc(100% - 32px));
+			border-radius: 34px;
+			overflow: hidden;
+			min-height: 72vh;
+			max-height: 720px;
+			display: flex;
+			align-items: flex-end;
+			box-shadow: var(--shadow);
+			background: linear-gradient(145deg, #c98e6b 0%, #946d61 35%, #5d6d63 100%);
+		}
+
+		.hero img {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			cursor: zoom-in;
+		}
+
+		.hero::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, rgba(24, 17, 13, 0.05) 0%, rgba(24, 17, 13, 0.15) 55%, rgba(24, 17, 13, 0.78) 100%);
+			pointer-events: none;
+		}
+
+		.hero-copy {
+			position: relative;
+			z-index: 2;
+			padding: 56px;
+			color: #fff8f1;
+		}
+
+		.hero-copy .kicker {
+			color: rgba(255, 245, 238, 0.85);
 		}
 
 		h1 {
-			font-size: clamp(4rem, 10vw, 7.8rem);
-			max-width: 8ch;
-			letter-spacing: -0.03em;
+			font-size: clamp(3.6rem, 9vw, 7rem);
+			line-height: 0.98;
+			letter-spacing: -0.02em;
+			margin: 0;
 		}
 
 		.hero-copy p {
-			max-width: 48ch;
-			font-size: 1.05rem;
-			line-height: 1.8;
-			color: var(--muted);
+			max-width: 46ch;
+			font-size: 1.1rem;
+			line-height: 1.7;
+			color: rgba(255, 245, 238, 0.86);
 			margin: 18px 0 0;
 		}
 
@@ -275,22 +244,21 @@
 			display: flex;
 			flex-wrap: wrap;
 			gap: 12px;
-			margin-top: 28px;
+			margin-top: 30px;
 		}
 
 		.button {
 			appearance: none;
 			border: 0;
 			border-radius: 999px;
-			padding: 14px 22px;
+			padding: 14px 24px;
 			font: inherit;
 			font-weight: 700;
 			cursor: pointer;
 			text-decoration: none;
-			transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 			display: inline-flex;
 			align-items: center;
-			justify-content: center;
+			transition: transform 0.2s ease;
 		}
 
 		.button:hover {
@@ -298,119 +266,215 @@
 		}
 
 		.button.primary {
-			background: var(--text);
-			color: #fffaf4;
-			box-shadow: 0 18px 30px rgba(47, 36, 29, 0.18);
+			background: #fff8f1;
+			color: var(--text);
 		}
 
 		.button.secondary {
-			background: rgba(168, 107, 85, 0.12);
-			color: var(--text);
-			border: 1px solid rgba(168, 107, 85, 0.24);
-		}
-
-		.hero-visual {
-			display: grid;
-			gap: 24px;
-		}
-
-		.portrait {
-			min-height: 420px;
-			border-radius: 30px;
-			overflow: hidden;
-			position: relative;
-			border: 1px solid var(--border);
-			box-shadow: var(--shadow);
-			background:
-				linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.18)),
-				radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 40%),
-				linear-gradient(145deg, #c98e6b 0%, #946d61 35%, #5d6d63 100%);
-		}
-
-		.portrait::before,
-		.portrait::after {
-			content: "";
-			position: absolute;
-			border-radius: 999px;
-			background: rgba(255, 247, 239, 0.18);
-			filter: blur(2px);
-		}
-
-		.portrait::before {
-			width: 260px;
-			height: 260px;
-			top: -48px;
-			left: -36px;
-		}
-
-		.portrait::after {
-			width: 220px;
-			height: 220px;
-			right: -22px;
-			bottom: 26px;
-		}
-
-		.portrait-content {
-			position: absolute;
-			inset: auto 0 0;
-			padding: 28px;
-			background: linear-gradient(180deg, transparent, rgba(32, 22, 18, 0.68));
+			background: rgba(255, 248, 241, 0.14);
 			color: #fff8f1;
+			border: 1px solid rgba(255, 248, 241, 0.4);
 		}
 
-		.portrait-content h2 {
-			font-size: clamp(2.4rem, 5vw, 4rem);
-			margin-bottom: 8px;
+		/* ---------- Full-bleed photo moments ---------- */
+
+		.moment {
+			width: min(1160px, calc(100% - 32px));
+			margin: 60px auto;
 		}
 
-		.portrait-content p {
+		.moment figure {
 			margin: 0;
-			max-width: 32ch;
-			line-height: 1.7;
-			color: rgba(255, 245, 238, 0.88);
-		}
-
-		.contribution-grid {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 18px;
-			width: 100%;
-			max-width: none;
-			align-items: stretch;
-		}
-
-		.international-grid {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 18px;
-			width: 100%;
-			align-items: start;
-		}
-
-		.international-stack {
-			display: grid;
-			gap: 18px;
-			align-content: start;
-		}
-
-		.payment-card {
-			display: flex;
-			flex-direction: column;
-			padding: 28px;
 			border-radius: 28px;
-			background: rgba(255, 252, 248, 0.84);
-			border: 1px solid var(--border);
+			overflow: hidden;
 			box-shadow: var(--shadow);
-			min-width: 0;
-			min-height: 300px;
+			cursor: zoom-in;
+			background: linear-gradient(145deg, #e3cdbd, #cbb5a6);
+		}
+
+		.moment img {
+			width: 100%;
 			height: auto;
 		}
 
+		.moment figcaption {
+			margin: 14px 4px 0;
+			color: var(--muted);
+			font-size: 0.95rem;
+		}
+
+		.moment figcaption strong {
+			color: var(--text);
+			font-family: "Playfair Display", serif;
+			font-weight: 600;
+			margin-right: 8px;
+		}
+
+		.moment.tall figure {
+			max-height: 560px;
+		}
+
+		.moment.tall img {
+			height: 56vh;
+			max-height: 560px;
+			object-fit: cover;
+		}
+
+		.moment-pair {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 18px;
+			align-items: start;
+		}
+
+		.moment-pair figure {
+			margin: 0;
+			border-radius: 26px;
+			overflow: hidden;
+			box-shadow: var(--shadow);
+			cursor: zoom-in;
+			background: linear-gradient(145deg, #e3cdbd, #cbb5a6);
+		}
+
+		.moment-pair img {
+			width: 100%;
+			height: 380px;
+			object-fit: cover;
+		}
+
+		.moment-pair figcaption {
+			margin: 12px 4px 0;
+			color: var(--muted);
+			font-size: 0.92rem;
+		}
+
+		/* ---------- Text-with-photo section (invitation) ---------- */
+
+		.split {
+			width: min(1160px, calc(100% - 32px));
+			margin: 60px auto;
+			display: grid;
+			grid-template-columns: 0.85fr 1.15fr;
+			gap: 40px;
+			align-items: center;
+		}
+
+		.split figure {
+			margin: 0;
+			border-radius: 28px;
+			overflow: hidden;
+			box-shadow: var(--shadow);
+			cursor: zoom-in;
+		}
+
+		.split img {
+			width: 100%;
+			height: 460px;
+			object-fit: cover;
+		}
+
+		.split .list {
+			display: grid;
+			gap: 20px;
+			margin: 22px 0 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.split .list li {
+			padding-top: 18px;
+			border-top: 1px solid var(--border);
+		}
+
+		.split .list li:first-child {
+			border-top: 0;
+			padding-top: 0;
+		}
+
+		.split .list strong {
+			display: block;
+			font-size: 0.78rem;
+			text-transform: uppercase;
+			letter-spacing: 0.14em;
+			color: var(--muted);
+			margin-bottom: 4px;
+		}
+
+		.split .list span {
+			font-size: 1.3rem;
+			font-family: "Playfair Display", serif;
+		}
+
+		/* ---------- Contribute (kept as cards -- functional data) ---------- */
+
+		.contribute-intro {
+			width: min(680px, calc(100% - 40px));
+			margin: 0 auto 32px;
+		}
+
+		.contribution-grid {
+			width: min(1160px, calc(100% - 32px));
+			margin: 0 auto;
+			display: grid;
+			gap: 18px;
+		}
+
+		.contribute-top {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 18px;
+			align-items: stretch;
+		}
+
+		.contribute-photo {
+			margin: 0;
+			border-radius: 24px;
+			overflow: hidden;
+			box-shadow: var(--shadow);
+			cursor: zoom-in;
+			min-height: 220px;
+			background: linear-gradient(145deg, #e3cdbd, #cbb5a6);
+		}
+
+		.contribute-photo img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.bank-row {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 18px;
+		}
+
+		.thank-you-note {
+			width: min(680px, calc(100% - 40px));
+			margin: 20px auto 0;
+			text-align: center;
+			color: var(--muted);
+			font-family: "Playfair Display", serif;
+			font-style: italic;
+			font-size: 1.15rem;
+			line-height: 1.7;
+		}
+
+		.payment-card {
+			padding: 26px;
+			border-radius: 24px;
+			background: rgba(255, 252, 248, 0.9);
+			border: 1px solid var(--border);
+			min-width: 0;
+		}
+
+		.payment-card .kicker {
+			margin-bottom: 8px;
+		}
+
 		.payment-card h3 {
-			font-size: 2rem;
-			margin-bottom: 12px;
-			line-height: 1.08;
-			overflow-wrap: anywhere;
+			font-size: 1.5rem;
+			margin: 0 0 12px;
+			line-height: 1.1;
 		}
 
 		.payment-card ul {
@@ -422,9 +486,11 @@
 		}
 
 		.payment-card li {
-			padding: 12px 0;
-			border-top: 1px solid rgba(80, 56, 44, 0.1);
+			padding: 10px 0;
+			border-top: 1px solid var(--border);
 			overflow-wrap: anywhere;
+			color: var(--muted);
+			line-height: 1.6;
 		}
 
 		.payment-card li:first-child {
@@ -435,741 +501,384 @@
 		.payment-card strong {
 			display: block;
 			color: var(--text);
-			margin-bottom: 4px;
-			overflow-wrap: anywhere;
+			margin-bottom: 2px;
 		}
 
-		.thank-you-card {
-			min-height: 170px;
-			padding-bottom: 22px;
+		@media (min-width: 641px) {
+			.contribute-top {
+				grid-template-columns: 0.68fr 1.32fr;
+			}
+
+			.bank-row {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
 		}
 
-		.thank-you-card p {
-			margin: 0;
-			line-height: 1.65;
+		@media (min-width: 961px) {
+			.bank-row {
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+			}
 		}
 
-		.card,
-		.panel,
-		.timeline-item,
-		.faq-item,
-		.rsvp,
-		.story-box {
-			padding: 22px;
-			min-width: 0;
-		}
+		/* ---------- FAQ / contact, plain ---------- */
 
-		.card h3,
-		.panel h3,
-		.rsvp h2,
-		.faq-item h3,
-		.timeline-item h3,
-		.story-box h3 {
-			font-size: 2rem;
-			margin-bottom: 10px;
-			line-height: 1.08;
-			overflow-wrap: anywhere;
-		}
-
-		.card p,
-		.panel p,
-		.faq-item p,
-		.rsvp p,
-		.timeline-item p,
-		.story-box p,
-		.story-box blockquote,
-		.payment-card p,
-		li {
-			line-height: 1.7;
-			color: var(--muted);
-			overflow-wrap: anywhere;
-		}
-
-		.section {
-			margin-top: 24px;
-		}
-
-		.section-head {
-			display: flex;
-			align-items: end;
-			justify-content: space-between;
-			gap: 16px;
-			margin-bottom: 16px;
-		}
-
-		.section-head h2 {
-			font-size: clamp(2.4rem, 5vw, 4.4rem);
-		}
-
-		.story-layout {
+		.contact-list {
 			display: grid;
-			grid-template-columns: 1.1fr 0.9fr;
 			gap: 18px;
-		}
-
-		.gallery-shell {
-			padding: 24px;
-			border-radius: 28px;
-			background: rgba(255, 252, 248, 0.84);
-			border: 1px solid var(--border);
-			box-shadow: var(--shadow);
-		}
-
-		.carousel {
-			display: grid;
-			gap: 16px;
-		}
-
-		.carousel-viewport {
-			overflow: hidden;
-			border-radius: 24px;
-			background: linear-gradient(180deg, rgba(47, 36, 29, 0.06), rgba(47, 36, 29, 0.03));
-		}
-
-		.carousel-track {
-			display: flex;
-			align-items: flex-start;
-			gap: 16px;
-			overflow-x: auto;
-			scroll-snap-type: x mandatory;
-			scroll-behavior: smooth;
-			padding-bottom: 6px;
-			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none;
-		}
-
-		.carousel-track::-webkit-scrollbar {
-			display: none;
-		}
-
-		.carousel-slide {
-			flex: 0 0 100%;
-			width: 100%;
-			scroll-snap-align: center;
-			border-radius: 26px;
-			overflow: hidden;
-			position: relative;
-			min-height: 420px;
-			box-shadow: 0 18px 40px rgba(74, 53, 41, 0.16);
-		}
-
-		.carousel-slide img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			display: block;
-		}
-
-		.carousel-caption {
-			position: absolute;
-			left: 18px;
-			bottom: 18px;
-			right: 18px;
-			padding: 18px 20px;
-			border-radius: 18px;
-			background: linear-gradient(180deg, rgba(24, 17, 13, 0.08), rgba(24, 17, 13, 0.72));
-			color: #fff9f2;
-			backdrop-filter: blur(6px);
-		}
-
-		.carousel-caption strong {
-			display: block;
-			font-family: "Playfair Display", serif;
-			font-size: 2rem;
-			margin-bottom: 4px;
-		}
-
-		.carousel-caption span {
-			display: block;
-			line-height: 1.6;
-			color: rgba(255, 249, 242, 0.88);
-		}
-
-		.carousel-controls {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			gap: 12px;
-			flex-wrap: wrap;
-		}
-
-		.carousel-actions {
-			display: flex;
-			gap: 10px;
-		}
-
-		.carousel-dots {
-			display: flex;
-			justify-content: flex-end;
-			gap: 8px;
-			flex-wrap: wrap;
-		}
-
-		.carousel-dot {
-			border: 0;
-			padding: 0;
-			width: 12px;
-			height: 12px;
-			border-radius: 999px;
-			background: rgba(80, 56, 44, 0.22);
-			cursor: pointer;
-			transition: transform 0.2s ease, background 0.2s ease, width 0.2s ease;
-		}
-
-		.carousel-dot:hover {
-			transform: translateY(-1px);
-			background: rgba(168, 107, 85, 0.5);
-		}
-
-		.carousel-dot.is-active {
-			width: 28px;
-			background: rgba(168, 107, 85, 0.78);
-		}
-
-		.carousel-button {
-			border: 1px solid rgba(168, 107, 85, 0.22);
-			background: rgba(168, 107, 85, 0.1);
-			color: var(--text);
-			border-radius: 999px;
-			width: 46px;
-			height: 46px;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 1.2rem;
-			cursor: pointer;
-			transition: transform 0.2s ease, background 0.2s ease;
-		}
-
-		.carousel-button:hover {
-			transform: translateY(-1px);
-			background: rgba(168, 107, 85, 0.16);
-		}
-
-		.story-box {
-			padding: 28px;
-			border-radius: 28px;
-			background: rgba(255, 252, 248, 0.84);
-			border: 1px solid var(--border);
-			box-shadow: var(--shadow);
-		}
-
-		.bottom-widgets {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-			gap: 18px;
-		}
-
-		.countdown-widget {
-			display: grid;
-			align-content: start;
-			gap: 8px;
-		}
-
-		.countdown-widget h3 {
-			font-size: clamp(2.2rem, 4vw, 3.6rem);
-			margin-bottom: 4px;
-		}
-
-		.countdown-widget p {
-			margin: 0;
-		}
-
-		.countdown-flash {
-			animation: countdownGlow 2s ease-in-out infinite;
-			text-shadow: 0 0 10px rgba(168, 107, 85, 0.28);
-		}
-
-		.story-box p {
-			line-height: 1.8;
-			margin-bottom: 14px;
-		}
-
-		.story-box blockquote {
-			margin: 0;
-			padding: 20px 20px 20px 24px;
-			border-left: 4px solid rgba(168, 107, 85, 0.5);
-			background: rgba(168, 107, 85, 0.08);
-			border-radius: 0 18px 18px 0;
-			color: var(--text);
-			line-height: 1.8;
-		}
-
-		.timeline {
-			display: grid;
-			gap: 14px;
-		}
-
-		.timeline-item {
-			display: grid;
-			grid-template-columns: 100px 1fr;
-			gap: 18px;
-			align-items: start;
-		}
-
-		.time {
-			font-family: "Cormorant Garamond", serif;
-			font-size: 2rem;
-			color: var(--accent);
-			line-height: 1;
-		}
-
-		.timeline-item h3,
-		.faq-item h3 {
-			font-size: 1.7rem;
-			margin-bottom: 6px;
-		}
-
-		.info-grid {
-			display: grid;
-			grid-template-columns: 1.1fr 0.9fr;
-			gap: 18px;
-			align-items: start;
-		}
-
-		.list {
-			display: grid;
-			gap: 14px;
-			margin: 0;
+			margin: 24px 0 0;
 			padding: 0;
 			list-style: none;
 		}
 
-		.list li {
-			padding: 14px 0;
-			border-top: 1px solid rgba(80, 56, 44, 0.1);
+		.contact-list li {
+			padding-top: 16px;
+			border-top: 1px solid var(--border);
 		}
 
-		.list li:first-child {
+		.contact-list li:first-child {
 			border-top: 0;
 			padding-top: 0;
 		}
 
-		.list strong {
+		.contact-list strong {
 			display: block;
-			color: var(--text);
-			margin-bottom: 4px;
+			font-family: "Playfair Display", serif;
+			font-size: 1.1rem;
+			margin-bottom: 2px;
 		}
 
-		.rsvp-wrap {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 18px;
-			align-items: stretch;
+		.contact-list a {
+			color: var(--accent);
+			text-decoration: none;
 		}
 
-		.rsvp {
-			height: 100%;
-			display: flex;
-			flex-direction: column;
+		.contact-list a:hover {
+			text-decoration: underline;
 		}
 
-		form {
-			display: grid;
-			gap: 14px;
+		/* ---------- Countdown ---------- */
+
+		.countdown-band {
+			width: min(1160px, calc(100% - 32px));
+			margin: 60px auto;
+			text-align: center;
+			padding: 50px 24px;
+			border-radius: 32px;
+			background: rgba(168, 107, 85, 0.08);
+			border: 1px solid rgba(168, 107, 85, 0.16);
 		}
 
-		form button {
-			margin-top: clamp(28px, 6vh, 56px);
+		.countdown-band h3 {
+			font-size: clamp(2.4rem, 6vw, 4.2rem);
+			margin: 6px 0 8px;
 		}
 
-		label {
-			display: grid;
-			gap: 8px;
-			font-weight: 600;
-			color: var(--text);
-		}
-
-		input,
-		select,
-		textarea {
-			width: 100%;
-			border-radius: 16px;
-			border: 1px solid rgba(80, 56, 44, 0.14);
-			background: rgba(255, 252, 248, 0.92);
-			padding: 14px 15px;
-			font: inherit;
-			color: var(--text);
-			outline: none;
-			transition: border-color 0.2s ease, box-shadow 0.2s ease;
-		}
-
-		select {
-			appearance: none;
-			background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
-			background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
-			background-size: 6px 6px, 6px 6px;
-			background-repeat: no-repeat;
-			padding-right: 46px;
-			cursor: pointer;
-		}
-
-		select:invalid {
+		.countdown-band p {
+			margin: 0;
 			color: var(--muted);
 		}
 
-		select option {
-			color: var(--text);
-		}
-
-		input:focus,
-		select:focus,
-		textarea:focus {
-			border-color: rgba(168, 107, 85, 0.55);
-			box-shadow: 0 0 0 4px rgba(168, 107, 85, 0.12);
-		}
-
-		textarea {
-			min-height: 120px;
-			resize: vertical;
-		}
-
-		.faq-grid {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 18px;
-			align-items: stretch;
-		}
-
-		.faq-grid .faq-item:nth-child(2) {
-			grid-row: span 2;
-		}
-
 		.footer {
-			padding: 30px 0 10px;
+			padding: 20px 0 50px;
 			text-align: center;
 			color: var(--muted);
 			font-size: 0.95rem;
 		}
 
-		.fade-up {
-			animation: fadeUp 0.8s ease both;
+		.footer .footnote {
+			margin: 10px 0 0;
+			font-size: 0.75rem;
+			color: var(--muted);
+			opacity: 0.75;
 		}
 
-		.delay-1 {
-			animation-delay: 0.08s;
+		/* ---------- Lightbox ---------- */
+
+		.lightbox {
+			position: fixed;
+			inset: 0;
+			z-index: 60;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 24px;
+			background: rgba(28, 19, 15, 0.88);
+			backdrop-filter: blur(6px);
 		}
 
-		.delay-2 {
-			animation-delay: 0.16s;
+		.lightbox.is-open {
+			display: flex;
 		}
 
-		.delay-3 {
-			animation-delay: 0.24s;
+		.lightbox-figure {
+			margin: 0;
+			max-width: min(1100px, 100%);
+			max-height: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 14px;
+			align-items: center;
 		}
 
-		@keyframes fadeUp {
-			from {
-				opacity: 0;
-				transform: translateY(18px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
+		.lightbox-figure img {
+			max-width: 100%;
+			max-height: 78vh;
+			border-radius: 18px;
+			box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 		}
 
-		@keyframes countdownGlow {
-			0% {
-				opacity: 1;
-				transform: scale(1);
-				text-shadow: 0 0 0 rgba(168, 107, 85, 0);
-			}
-
-			50% {
-				opacity: 0.72;
-				transform: scale(1.015);
-				text-shadow: 0 0 18px rgba(168, 107, 85, 0.42);
-			}
-
-			100% {
-				opacity: 1;
-				transform: scale(1);
-				text-shadow: 0 0 0 rgba(168, 107, 85, 0);
-			}
+		.lightbox-figure figcaption {
+			color: rgba(255, 246, 239, 0.9);
+			text-align: center;
+			line-height: 1.6;
+			max-width: 60ch;
 		}
+
+		.lightbox-figure figcaption strong {
+			display: block;
+			font-family: "Playfair Display", serif;
+			font-size: 1.2rem;
+			color: #fff8f1;
+		}
+
+		.lightbox-control {
+			position: absolute;
+			border: 1px solid rgba(255, 245, 238, 0.28);
+			background: rgba(255, 245, 238, 0.12);
+			color: #fff8f1;
+			border-radius: 999px;
+			width: 48px;
+			height: 48px;
+			font-size: 1.3rem;
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.lightbox-control:hover {
+			background: rgba(255, 245, 238, 0.22);
+		}
+
+		.lightbox-prev {
+			left: 18px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.lightbox-next {
+			right: 18px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.lightbox-close {
+			right: 18px;
+			top: 18px;
+		}
+
+		/* ---------- Responsive ---------- */
 
 		@media (max-width: 960px) {
-
-			.hero,
-			.story-layout,
-			.gallery-shell,
-			.info-grid,
-			.rsvp-wrap,
-			.faq-grid {
+			.split {
 				grid-template-columns: 1fr;
 			}
 
-			.faq-grid .faq-item:nth-child(2) {
-				grid-row: auto;
+			.split img {
+				height: 380px;
 			}
 
-			.section-head {
-				align-items: start;
-				flex-direction: column;
+			.moment-pair {
+				grid-template-columns: 1fr;
 			}
 
-			.hero-copy {
-				min-height: auto;
+			.moment-pair img {
+				height: 340px;
 			}
 
-			.carousel-slide {
-				flex-basis: 100%;
-			}
-		}
-
-		@media (min-width: 961px) {
-			.international-grid {
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-			}
-
-			.carousel-slide {
-				flex: 0 0 auto;
-				width: auto;
-				height: min(60vh, 600px);
-				min-height: 0;
-			}
-
-			.carousel-slide img {
-				width: auto;
-				height: 100%;
-				max-width: none;
+			.hero {
+				min-height: 72vh;
 			}
 		}
 
 		@media (max-width: 720px) {
-			.page {
-				width: min(100% - 20px, 1160px);
-				padding-top: 10px;
-			}
-
 			.nav {
-				padding: 16px;
-				border-radius: 20px;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 12px;
-			}
-
-			.brand {
-				min-width: 0;
-			}
-
-			.nav .nav-links {
-				margin-left: 0;
+				--nav-collapse: 0 !important;
+				width: calc(100% - 32px);
 				flex-wrap: wrap;
+				padding: 14px 16px;
+			}
+
+			.nav-links {
+				margin-left: 0;
 				gap: 10px;
-				overflow-x: visible;
-				-webkit-overflow-scrolling: auto;
 			}
 
 			.nav-countdown {
-				margin-left: 0;
-				align-items: flex-start;
-			}
-
-			.nav-links a {
-				flex: 0 0 auto;
+				margin-left: auto;
 			}
 
 			.hero-copy {
-				padding: 28px 22px;
+				padding: 30px 24px;
 			}
 
-			.faq-grid {
-				grid-template-columns: 1fr;
+			.moment.tall figure,
+			.moment.tall img {
+				max-height: 60vh;
+				height: 60vh;
 			}
 
-			.faq-grid .faq-item:nth-child(2) {
-				grid-row: auto;
+			.lightbox-prev {
+				left: 8px;
 			}
 
-			.timeline-item {
-				grid-template-columns: 1fr;
-				gap: 8px;
+			.lightbox-next {
+				right: 8px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			html {
+				scroll-behavior: auto;
 			}
 
-			.carousel-slide {
-				flex-basis: 100%;
-				min-height: 250px;
-			}
-
-			.carousel-slide img {
-				object-fit: cover;
-			}
-
-			.carousel-caption strong {
-				font-size: 1.5rem;
-			}
-
-			.carousel-caption span {
-				font-size: 0.95rem;
-			}
-
-			.portrait {
-				min-height: 360px;
-			}
-
-			.bottom-widgets {
-				grid-template-columns: 1fr;
-			}
-
-			h1 {
-				font-size: clamp(3.4rem, 17vw, 5.2rem);
+			.button:hover {
+				transform: none;
 			}
 		}
 	</style>
 </head>
 
 <body>
-	<main class="page">
-		<header class="nav fade-up">
-			<div class="brand">
-				<strong>Oj & Carol</strong>
-			</div>
-			<div class="nav-countdown">
-				<span class="nav-countdown-label">Countdown</span>
-				<strong id="topbar-countdown" class="nav-countdown-value">Loading...</strong>
-			</div>
-			<nav class="nav-links" aria-label="Primary">
-				<a href="#story">Our Story</a>
-				<a href="#gallery">Gallery</a>
-				<a href="#invitation">Invitation</a>
-				<a href="#contribute">Contribute</a>
+	<header class="nav">
+		<div class="brand">
+			<strong>Oj &amp; Carol</strong>
+		</div>
+		<nav class="nav-links" aria-label="Primary">
+			<a href="#story">Our Story</a>
+			<a href="#invitation">Invitation</a>
+			<a href="#contribute">Contribute</a>
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
+				target="_blank" rel="noopener noreferrer">RSVP</a>
+		</nav>
+		<div class="nav-countdown">
+			<span class="nav-countdown-label">Countdown</span>
+			<strong id="topbar-countdown" class="nav-countdown-value">Loading…</strong>
+		</div>
+	</header>
+
+	<section class="hero">
+		<img src="images/photo-1.jpeg" alt="Oj and Carol together" data-photo
+			data-caption-title="Oj &amp; Carol" data-caption-text="2 January 2027, Kampala.">
+		<div class="hero-copy">
+			<span class="kicker">You are cordially invited</span>
+			<h1>Oj &amp; Carol</h1>
+			<p>We are getting married — and we cannot imagine this day without you.</p>
+			<div class="cta-row">
 				<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
-					target="_blank">
-					RSVP
-				</a>
-			</nav>
-		</header>
-
-		<section class="hero">
-			<article class="hero-copy fade-up delay-1">
-				<div>
-					<div class="eyebrow">You are cordially invited</div>
-					<h1>Oj &amp; Carol</h1>
-					<p>We are getting married — and we cannot imagine this day without you. </p>
-
-					<div class="cta-row">
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
-							target="_blank" class="button primary">
-							RSVP now
-						</a>
-						<a class="button secondary" href="#contribute">Contribute</a>
-					</div>
-				</div>
-			</article>
-
-			<aside class="hero-visual fade-up delay-2">
-				<div class="portrait">
-					<div class="portrait-content">
-						<h2>A day to celebrate.</h2>
-					</div>
-				</div>
-			</aside>
-		</section>
-
-		<section class="section" id="story">
-			<div class="section-head fade-up delay-1">
-				<h2><i>Our </i> Story</h2>
+					target="_blank" rel="noopener noreferrer" class="button primary">RSVP now</a>
+				<a class="button secondary" href="#contribute">Contribute</a>
 			</div>
-			<div class="story-layout">
-				<div class="story-box fade-up delay-2">
-					<p>
-						We met on a rainy afternoon, when a shared umbrella became the first of many small adventures.
-						What started as a chance conversation grew into weekend road trips, a kitchen full of music,
-						and a life built on kindness and good coffee.
-					</p>
-					<p>
-						This wedding is a celebration of the people, places, and moments that shaped our story.
-						We cannot wait to share one beautiful evening with the family and friends who made it all
-						possible.
-					</p>
-					<blockquote>
-						“Whatever our souls are made of, his and mine are the same.”
-					</blockquote>
-				</div>
-			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="section" id="gallery">
-			<div class="section-head fade-up delay-1">
-				<h2><i>Our</i> <i>slice of life</i></h2>
-			</div>
-			<div class="gallery-shell fade-up delay-2">
-				<div class="carousel" data-carousel>
-					<div class="carousel-viewport">
-						<div class="carousel-track" data-carousel-track>
-							<figure class="carousel-slide">
-								<img src="images/photo-1.jpg" alt="A couple smiling together in formal wedding attire">
-								<figcaption class="carousel-caption">
-									<strong>March 2024</strong>
-									<span>Visited Amsterdam for Oj's birthday.</span>
-								</figcaption>
-							</figure>
-							<figure class="carousel-slide">
-								<img src="images/photo-2.jpg" alt="A romantic couple portrait outdoors with warm light">
-								<figcaption class="carousel-caption">
-									<strong>Aqaba, Jordan</strong>
-									<span>Beaching in Aqaba, Jordan.</span>
-								</figcaption>
-							</figure>
-							<figure class="carousel-slide">
-								<img src="images/photo-3.jpg" alt="A wedding couple holding hands during a celebration">
-								<figcaption class="carousel-caption">
-									<strong>titanic</strong>
-									<span>caption.</span>
-								</figcaption>
-							</figure>
-						
-						</div>
-					</div>
-					<div class="carousel-controls">
-						<div class="carousel-dots" data-carousel-dots aria-label="Gallery navigation"></div>
-					</div>
-				</div>
-			</div>
-		</section>
+	<section class="prose" id="story" style="margin-top: 70px;">
+		<h2>Our Story</h2>
+		<p>
+			We met on a rainy afternoon, when a shared umbrella became the first of many small adventures.
+			What started as a chance conversation grew into weekend road trips, a kitchen full of music,
+			and a life built on kindness and good coffee.
+		</p>
+	</section>
 
-		<section class="section" id="invitation">
-			<div class="section-head fade-up delay-1">
-				<h2>Invitation</h2>
-			</div>
-			<div class="panel fade-up delay-2">
-				<h3>Invitation note</h3>
-				<ul class="list">
-					<li>
-						<strong>Wedding date</strong>
-						2 Jan 2027
-					</li>
-					<li>
-						<strong>Location</strong>
-						Kampala, Uganda
-					</li>
-					<li>
-						<strong>Formal invitation</strong>
-						To follow.
-					</li>
-				</ul>
-			</div>
-		</section>
+	<figure class="moment tall">
+		<img src="images/photo-2.jpeg" alt="Oj and Carol on an early trip together" loading="lazy" data-photo
+			data-caption-title="Where it started" data-caption-text="Add your own line about this photo.">
+		<figcaption><strong>Where it started</strong>Add your own line about this photo.</figcaption>
+	</figure>
 
-		<section class="section" id="contribute">
-			<div class="section-head fade-up delay-1">
-				<h2>Contribute to <i>Our</i> Wedding</h2>
-			</div>
-			<div class="contribution-grid">
-				<div class="payment-card fade-up delay-3">
-					<div class="eyebrow">Mobile Money</div>
+	<section class="prose">
+		<p>
+			This wedding is a celebration of the people, places, and moments that shaped our story.
+			We cannot wait to share one beautiful evening with the family and friends who made it all
+			possible.
+		</p>
+		<blockquote>
+			“Whatever our souls are made of, his and mine are the same.”
+		</blockquote>
+		<cite>— Emily Brontë, Wuthering Heights</cite>
+	</section>
+
+	<div class="moment moment-pair">
+		<figure>
+			<img src="images/photo-3.jpeg" alt="Oj and Carol in Amsterdam" loading="lazy" data-photo
+				data-caption-title="March 2024" data-caption-text="Amsterdam, for Oj's birthday.">
+			<figcaption><strong>March 2024</strong>Amsterdam, for Oj's birthday.</figcaption>
+		</figure>
+		<figure>
+			<img src="images/photo-4.jpeg" alt="Oj and Carol on the beach in Aqaba" loading="lazy" data-photo
+				data-caption-title="Aqaba, Jordan" data-caption-text="A week by the Red Sea.">
+			<figcaption><strong>Aqaba, Jordan</strong>A week by the Red Sea.</figcaption>
+		</figure>
+	</div>
+
+	<figure class="moment">
+		<img src="images/photo-5.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
+	</figure>
+
+	<div class="split" id="invitation">
+		<figure>
+			<img src="images/photo-6.jpeg" alt="Oj and Carol" loading="lazy" data-photo
+				data-caption-title="See you in Kampala" data-caption-text="2 January 2027.">
+		</figure>
+		<div>
+			<h2 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 0;">Join us in Kampala</h2>
+			<ul class="list">
+				<li>
+					<strong>Wedding date</strong>
+					<span>2 Jan 2027</span>
+				</li>
+				<li>
+					<strong>Location</strong>
+					<span>Kampala, Uganda</span>
+				</li>
+				<li>
+					<strong>Formal invitation</strong>
+					<span style="font-size: 1.05rem; font-family: Inter, sans-serif; color: var(--muted);">To follow.</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<figure class="moment tall">
+		<img src="images/photo-7.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
+	</figure>
+
+	<section id="contribute" style="margin-top: 70px;">
+		<div class="contribute-intro">
+			<h2 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 0 0 8px;">Help us celebrate</h2>
+			<p style="color: var(--muted); line-height: 1.8; margin: 0;">
+				Your presence is the only gift we're asking for. For anyone who'd still like to contribute,
+				our details are below.
+			</p>
+		</div>
+		<div class="contribution-grid">
+			<div class="contribute-top">
+				<div class="payment-card">
+					<div class="kicker">Mobile Money</div>
 					<h3>Send via mobile money</h3>
 					<ul>
 						<li><strong>Name</strong> Carol Kyomuhendo</li>
 						<li><strong>Number</strong> +256782406100</li>
 					</ul>
 				</div>
-				<div class="payment-card fade-up delay-2">
-					<div class="eyebrow">UGX</div>
+				<figure class="contribute-photo">
+					<img src="images/photo-8.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
+				</figure>
+			</div>
+			<div class="bank-row">
+				<div class="payment-card">
+					<div class="kicker">UGX</div>
 					<h3>Bank transfer</h3>
 					<ul>
 						<li><strong>UGX account name</strong> Carol Bazirake Kyomuhendo</li>
@@ -1179,332 +888,286 @@
 						<li><strong>UGX Swift/BIC</strong> HFINUGKAXXX</li>
 					</ul>
 				</div>
-				<div class="international-grid">
-					<div class="payment-card fade-up delay-3">
-						<div class="eyebrow">GBP</div>
-						<h3>Bank transfer</h3>
-						<ul>
-							<li><strong>GBP account name</strong> Andrew Kwezi</li>
-							<li><strong>GBP bank</strong> Revolut Ltd</li>
-							<li><strong>GBP sort code</strong> 04-29-09</li>
-							<li><strong>GBP account no</strong> 36562424</li>
-							<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
-							<li><strong>GBP IBAN</strong> GB18REVO00997086743069</li>
-						</ul>
-					</div>
-					<div class="payment-card fade-up delay-2">
-						<div class="eyebrow">GBP</div>
-						<h3>Bank transfer</h3>
-						<ul>
-							<li><strong>GBP account name</strong> Carol Bazirake Kyomuhendo</li>
-							<li><strong>GBP bank</strong> Revolut Ltd</li>
-							<li><strong>GBP sort code</strong> 04-29-09</li>
-							<li><strong>GBP account no</strong> 38900874</li>
-							<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
-							<li><strong>GBP IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
-						</ul>
-					</div>
-					<div class="international-stack">
-						<div class="payment-card fade-up delay-3">
-							<div class="eyebrow">USD</div>
-							<h3>Bank transfer</h3>
-							<ul>
-								<li><strong>USD account name</strong> Carol Bazirake Kyomuhendo</li>
-								<li><strong>USD bank</strong> Revolut Ltd</li>
-								<li><strong>USD SWIFT/BIC</strong> REVOGB21</li>
-								<li><strong>USD IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
-							</ul>
-						</div>
-						<div class="payment-card thank-you-card fade-up delay-2">
-							<div class="eyebrow">Thank you</div>
-							<p>
-								Thank you for celebrating with us. Your presence means the world to us.
-							</p>
-						</div>
-					</div>
+				<div class="payment-card">
+					<div class="kicker">GBP</div>
+					<h3>Bank transfer</h3>
+					<ul>
+						<li><strong>GBP account name</strong> Andrew Kwezi</li>
+						<li><strong>GBP bank</strong> Revolut Ltd</li>
+						<li><strong>GBP sort code</strong> 04-29-09</li>
+						<li><strong>GBP account no</strong> 36562424</li>
+						<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
+						<li><strong>GBP IBAN</strong> GB18 REVO 0099 7086 7430 69</li>
+					</ul>
+				</div>
+				<div class="payment-card">
+					<div class="kicker">GBP</div>
+					<h3>Bank transfer</h3>
+					<ul>
+						<li><strong>GBP account name</strong> Carol Bazirake Kyomuhendo</li>
+						<li><strong>GBP bank</strong> Revolut Ltd</li>
+						<li><strong>GBP sort code</strong> 04-29-09</li>
+						<li><strong>GBP account no</strong> 38900874</li>
+						<li><strong>GBP SWIFT/BIC</strong> REVOGB21</li>
+						<li><strong>GBP IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+					</ul>
+				</div>
+				<div class="payment-card">
+					<div class="kicker">USD</div>
+					<h3>Bank transfer</h3>
+					<ul>
+						<li><strong>USD account name</strong> Carol Bazirake Kyomuhendo</li>
+						<li><strong>USD bank</strong> Revolut Ltd</li>
+						<li><strong>USD SWIFT/BIC</strong> REVOGB21</li>
+						<li><strong>USD IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
+					</ul>
 				</div>
 			</div>
-		</section>
+			<p class="thank-you-note">Thank you for celebrating with us. Your presence means the world to us.</p>
+		</div>
+	</section>
 
-		<section class="section" id="FAQs">
-			<div class="section-head fade-up delay-1">
-				<h2><i>FAQs</i></h2>
-			</div>
-			<div class="faq-grid">
-				<div class="faq-item fade-up delay-2">
-					<div class="eyebrow">FAQ</div>
-					<h3>What time should I arrive?</h3>
-					<p>Please arrive 1 hour before the ceremony so you can settle in comfortably.</p>
-				</div>
-				<div class="faq-item fade-up delay-3">
-					<div class="eyebrow">FAQ</div>
-					<h3>Who do I contact for further details?</h3>
-					<div class="contact-list">
-						<p>
-							<strong>Emily Kusaasira</strong>
-							<a href="tel:+256774443100">+256 774 443100</a>
-						</p>
-						<p>
-							<strong>Doreen Muhebwa</strong>
-							<a href="tel:+256751235925">+256 751 235925</a>
-						</p>
-						<p>
-							<strong>Bessie</strong>
-							<a href="tel:+256751235925">+256 751 235925</a>
-						</p>
-					</div>
-				</div>
-				<div class="faq-item fade-up delay-3">
-					<div class="eyebrow">FAQ</div>
-					<h3>Is the ceremony outdoors?</h3>
-					<p>Yes, the ceremony is outdoors if the weather permits it. An indoor backup space is prepared
-						for the full event.</p>
-				</div>
-			</div>
-		</section>
+	<section class="prose" id="faqs" style="margin-top: 70px;">
+		<h2>Questions?</h2>
+		<p style="margin-bottom: 24px;">For anything about the day, get in touch with any of the below.</p>
+		<ul class="contact-list">
+			<li>
+				<strong>Emily Kusaasira</strong>
+				<a href="tel:+256774443100">+256 774 443100</a>
+			</li>
+			<li>
+				<strong>Doreen Muhebwa</strong>
+				<a href="tel:+256751235925">+256 751 235925</a>
+			</li>
+			<li>
+				<strong>Bessie Turyamuhaki</strong>
+				<a href="tel:+447444567307">+44 7444 567307</a>
+			</li>
+		</ul>
+	</section>
 
-		<section class="section" id="registry-countdown">
-			<div class="section-head fade-up delay-1">
-				<h2><i>Countdown</i> & Note</h2>
-			</div>
-			<div class="bottom-widgets">
-				<div class="card countdown-widget fade-up delay-2">
-					<div class="eyebrow">Countdown</div>
-					<h3 id="countdown-widget">Countdown loading...</h3>
-					<p>We are counting down to the wedding here.</p>
-				</div>
-				<div class="panel fade-up delay-3">
-					<div class="eyebrow">A note from the couple</div>
-					<h3>Thank you for being part of <i>our</i> day</h3>
-					<p>
-						Your presence is the greatest gift. Whether you are traveling from across town or across the
-						world, we are honored to celebrate with you.
-					</p>
-				</div>
-			</div>
-		</section>
+	<div class="countdown-band">
+		<p style="margin: 0 0 4px; color: var(--muted);">Until we say I do</p>
+		<h3 id="countdown-widget">Loading…</h3>
+	</div>
 
-		<footer class="footer fade-up delay-3">
-			Made with love.
-			I'm not getting paid for this 😔
-		</footer>
-	</main>
+	<figure class="moment">
+		<img src="images/photo-9.jpeg" alt="Oj and Carol together" loading="lazy" data-photo
+			data-caption-title="Thank you for being part of our day"
+			data-caption-text="Your presence is the greatest gift.">
+		<figcaption><strong>Thank you for being part of our day</strong>Your presence is the greatest gift.</figcaption>
+	</figure>
+
+	<footer class="footer">
+		<p style="margin: 0;">Oj &amp; Carol, 2 January 2027, Kampala</p>
+		<p class="footnote">Made with love. I'm not getting paid for this 😔 — Sean.</p>
+	</footer>
+
+	<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+		<button class="lightbox-control lightbox-close" type="button" aria-label="Close">×</button>
+		<button class="lightbox-control lightbox-prev" type="button" aria-label="Previous photo">‹</button>
+		<button class="lightbox-control lightbox-next" type="button" aria-label="Next photo">›</button>
+		<figure class="lightbox-figure">
+			<img id="lightbox-image" src="" alt="">
+			<figcaption id="lightbox-caption"></figcaption>
+		</figure>
+	</div>
 
 	<script>
-		const carousel = document.querySelector("[data-carousel]");
-		if (carousel) {
-			const track = carousel.querySelector("[data-carousel-track]");
-			const slides = Array.from(track.querySelectorAll(".carousel-slide"));
-			const dotsContainer = carousel.querySelector("[data-carousel-dots]");
+		/* ---------- Lightbox ---------- */
+		(function () {
+			const items = Array.from(document.querySelectorAll("[data-photo]"));
+			const lightbox = document.getElementById("lightbox");
+			if (!items.length || !lightbox) return;
 
-			if (dotsContainer) {
-				dotsContainer.innerHTML = "";
-				const dots = slides.map((slide, index) => {
-					const dot = document.createElement("button");
-					dot.type = "button";
-					dot.className = "carousel-dot";
-					dot.setAttribute("aria-label", `Go to photo ${index + 1}`);
-					dot.addEventListener("click", () => {
-						slide.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-					});
-					dotsContainer.appendChild(dot);
-					return dot;
-				});
+			const image = document.getElementById("lightbox-image");
+			const caption = document.getElementById("lightbox-caption");
+			const closeBtn = lightbox.querySelector(".lightbox-close");
+			const prevBtn = lightbox.querySelector(".lightbox-prev");
+			const nextBtn = lightbox.querySelector(".lightbox-next");
+			let index = 0;
+			let lastFocused = null;
 
-				const updateDots = () => {
-					const trackCenter = track.scrollLeft + track.clientWidth / 2;
-					let activeIndex = 0;
-					let smallestDistance = Infinity;
+			const photos = items.map((img) => ({
+				src: img.currentSrc || img.src,
+				alt: img.alt,
+				title: img.dataset.captionTitle || "",
+				text: img.dataset.captionText || ""
+			}));
 
-					slides.forEach((slide, index) => {
-						const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-						const distance = Math.abs(slideCenter - trackCenter);
-						if (distance < smallestDistance) {
-							smallestDistance = distance;
-							activeIndex = index;
-						}
-					});
-
-					dots.forEach((dot, index) => {
-						dot.classList.toggle("is-active", index === activeIndex);
-						if (index === activeIndex) {
-							dot.setAttribute("aria-current", "true");
-						} else {
-							dot.removeAttribute("aria-current");
-						}
-					});
-				};
-
-				track.addEventListener("scroll", () => window.requestAnimationFrame(updateDots), { passive: true });
-				window.addEventListener("resize", updateDots);
-				updateDots();
+			function render() {
+				const photo = photos[index];
+				image.src = photo.src;
+				image.alt = photo.alt;
+				caption.innerHTML = "";
+				if (photo.title) {
+					const strong = document.createElement("strong");
+					strong.textContent = photo.title;
+					caption.appendChild(strong);
+				}
+				if (photo.text) caption.appendChild(document.createTextNode(photo.text));
 			}
-		}
 
-		const weddingDate = new Date("2027-01-02T00:00:00+03:00");
-		const countdownWidget = document.getElementById("countdown-widget");
-		const topbarCountdown = document.getElementById("topbar-countdown");
-		const topNav = document.querySelector(".nav");
-		const navTriggerDistance = 40;
-		const navToggleDuration = 360;
-		let scrollTicking = false;
-		let lastScrollY = window.scrollY;
-		let navAnimationFrame = null;
-		let navAnimationStartTime = 0;
-		let navAnimationFrom = 0;
-		let navAnimationTo = 0;
-		let navCollapseValue = 0;
-		let scrollTravel = 0;
-		let scrollDirection = 0;
+			function open(i) {
+				index = i;
+				lastFocused = document.activeElement;
+				render();
+				lightbox.classList.add("is-open");
+				document.body.style.overflow = "hidden";
+				closeBtn.focus();
+			}
 
-		function setNavCollapse(value) {
-			navCollapseValue = Math.min(1, Math.max(0, value));
-			if (topNav) {
+			function close() {
+				lightbox.classList.remove("is-open");
+				document.body.style.overflow = "";
+				if (lastFocused) lastFocused.focus();
+			}
+
+			function step(offset) {
+				index = (index + offset + photos.length) % photos.length;
+				render();
+			}
+
+			items.forEach((item, i) => {
+				item.style.cursor = "zoom-in";
+				item.setAttribute("tabindex", "0");
+				item.setAttribute("role", "button");
+				item.setAttribute("aria-label", "Open photo " + (i + 1));
+				item.addEventListener("click", () => open(i));
+				item.addEventListener("keydown", (e) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						open(i);
+					}
+				});
+			});
+
+			closeBtn.addEventListener("click", close);
+			prevBtn.addEventListener("click", () => step(-1));
+			nextBtn.addEventListener("click", () => step(1));
+			lightbox.addEventListener("click", (e) => {
+				if (e.target === lightbox) close();
+			});
+			document.addEventListener("keydown", (e) => {
+				if (!lightbox.classList.contains("is-open")) return;
+				if (e.key === "Escape") close();
+				if (e.key === "ArrowLeft") step(-1);
+				if (e.key === "ArrowRight") step(1);
+			});
+		})();
+
+		/* ---------- Sticky nav collapse ---------- */
+		(function () {
+			const topNav = document.querySelector(".nav");
+			if (!topNav) return;
+
+			const navTriggerDistance = 40;
+			const navToggleDuration = 360;
+			let scrollTicking = false;
+			let lastScrollY = window.scrollY;
+			let navAnimationFrame = null;
+			let navAnimationStartTime = 0;
+			let navAnimationFrom = 0;
+			let navAnimationTo = 0;
+			let navCollapseValue = 0;
+			let scrollTravel = 0;
+			let scrollDirection = 0;
+
+			function setNavCollapse(value) {
+				navCollapseValue = Math.min(1, Math.max(0, value));
 				topNav.style.setProperty("--nav-collapse", navCollapseValue.toFixed(3));
 			}
-		}
 
-		function cancelNavAnimation() {
-			if (navAnimationFrame !== null) {
-				window.cancelAnimationFrame(navAnimationFrame);
-				navAnimationFrame = null;
-			}
-		}
-
-		function animateNavToggle() {
-			const progress = Math.min(1, (performance.now() - navAnimationStartTime) / navToggleDuration);
-			const nextValue = navAnimationFrom + ((navAnimationTo - navAnimationFrom) * progress);
-			setNavCollapse(nextValue);
-
-			if (progress < 1) {
-				navAnimationFrame = window.requestAnimationFrame(animateNavToggle);
-			} else {
-				navAnimationFrame = null;
-				setNavCollapse(navAnimationTo);
-			}
-		}
-
-		function startNavToggleAnimation(target) {
-			if (!topNav) {
-				return;
-			}
-
-			cancelNavAnimation();
-			navAnimationFrom = navCollapseValue;
-			navAnimationTo = target;
-
-			if (Math.abs(navAnimationTo - navAnimationFrom) < 0.001) {
-				setNavCollapse(target);
-				return;
-			}
-
-			navAnimationStartTime = performance.now();
-			navAnimationFrame = window.requestAnimationFrame(animateNavToggle);
-		}
-
-		function updateTopNavVisibility() {
-			if (!topNav) {
-				return;
-			}
-
-			const currentScrollY = window.scrollY;
-			const deltaY = currentScrollY - lastScrollY;
-			const direction = Math.sign(deltaY);
-
-			if (direction !== 0 && direction !== scrollDirection) {
-				scrollDirection = direction;
-				scrollTravel = 0;
-			}
-
-			if (direction !== 0) {
-				scrollTravel += Math.abs(deltaY);
-				if (direction > 0 && scrollTravel >= navTriggerDistance && navAnimationTo !== 1) {
-					startNavToggleAnimation(1);
-					scrollTravel = 0;
-				} else if (direction < 0 && scrollTravel >= navTriggerDistance && navAnimationTo !== 0) {
-					startNavToggleAnimation(0);
-					scrollTravel = 0;
+			function animate() {
+				const progress = Math.min(1, (performance.now() - navAnimationStartTime) / navToggleDuration);
+				setNavCollapse(navAnimationFrom + ((navAnimationTo - navAnimationFrom) * progress));
+				if (progress < 1) {
+					navAnimationFrame = window.requestAnimationFrame(animate);
+				} else {
+					navAnimationFrame = null;
+					setNavCollapse(navAnimationTo);
 				}
 			}
 
-			lastScrollY = currentScrollY;
-			scrollTicking = false;
-		}
-
-		window.addEventListener("scroll", () => {
-			if (scrollTicking) {
-				return;
-			}
-
-			scrollTicking = true;
-			window.requestAnimationFrame(updateTopNavVisibility);
-		}, { passive: true });
-
-		window.addEventListener("resize", () => {
-			window.requestAnimationFrame(updateTopNavVisibility);
-		});
-
-		updateTopNavVisibility();
-
-		function updateCountdown() {
-			const now = new Date();
-			const diff = weddingDate - now;
-			if (diff <= 0) {
-				const finishedText = "We are married";
-				if (countdownWidget) countdownWidget.textContent = finishedText;
-				if (topbarCountdown) topbarCountdown.textContent = finishedText;
-				return;
-			}
-
-			const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-			const minutes = Math.floor((diff / (1000 * 60)) % 60);
-			const seconds = Math.floor((diff / 1000) % 60);
-			const countdownText = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
-
-			if (countdownWidget) {
-				countdownWidget.textContent = countdownText;
-				countdownWidget.classList.add("countdown-flash");
-			}
-
-			if (topbarCountdown) {
-				topbarCountdown.textContent = countdownText;
-			}
-		}
-
-		updateCountdown();
-		setInterval(updateCountdown, 1000);
-		const rsvpForm = document.getElementById("rsvpForm");
-
-		if (rsvpForm) {
-			rsvpForm.addEventListener("submit", async (e) => {
-				e.preventDefault();
-
-				const formData = new FormData(rsvpForm);
-
-				try {
-					await fetch(
-						"https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/formResponse",
-						{
-							method: "POST",
-							mode: "no-cors",
-							body: formData
-						}
-					);
-
-					document.getElementById("rsvp-success").style.display = "block";
-					rsvpForm.reset();
-
-					setTimeout(() => {
-						document.getElementById("rsvp-success").style.display = "none";
-					}, 5000);
-
-				} catch (error) {
-					alert("There was a problem sending your RSVP. Please try again.");
+			function startNavToggleAnimation(target) {
+				if (navAnimationFrame !== null) {
+					window.cancelAnimationFrame(navAnimationFrame);
+					navAnimationFrame = null;
 				}
-			});
-		}
+				navAnimationFrom = navCollapseValue;
+				navAnimationTo = target;
+				if (Math.abs(navAnimationTo - navAnimationFrom) < 0.001) {
+					setNavCollapse(target);
+					return;
+				}
+				navAnimationStartTime = performance.now();
+				navAnimationFrame = window.requestAnimationFrame(animate);
+			}
 
+			function update() {
+				const currentScrollY = window.scrollY;
+				const deltaY = currentScrollY - lastScrollY;
+				const direction = Math.sign(deltaY);
+
+				if (direction !== 0 && direction !== scrollDirection) {
+					scrollDirection = direction;
+					scrollTravel = 0;
+				}
+
+				if (direction !== 0) {
+					scrollTravel += Math.abs(deltaY);
+					if (direction > 0 && scrollTravel >= navTriggerDistance && navAnimationTo !== 1) {
+						startNavToggleAnimation(1);
+						scrollTravel = 0;
+					} else if (direction < 0 && scrollTravel >= navTriggerDistance && navAnimationTo !== 0) {
+						startNavToggleAnimation(0);
+						scrollTravel = 0;
+					}
+				}
+
+				lastScrollY = currentScrollY;
+				scrollTicking = false;
+			}
+
+			window.addEventListener("scroll", () => {
+				if (scrollTicking) return;
+				scrollTicking = true;
+				window.requestAnimationFrame(update);
+			}, { passive: true });
+
+			update();
+		})();
+
+		/* ---------- Countdown ---------- */
+		(function () {
+			const weddingDate = new Date("2027-01-02T00:00:00+03:00");
+			const countdownWidget = document.getElementById("countdown-widget");
+			const topbarCountdown = document.getElementById("topbar-countdown");
+
+			function updateCountdown() {
+				const diff = weddingDate - new Date();
+				if (diff <= 0) {
+					const finishedText = "We are married";
+					if (countdownWidget) countdownWidget.textContent = finishedText;
+					if (topbarCountdown) topbarCountdown.textContent = finishedText;
+					return;
+				}
+
+				const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+				const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+				const minutes = Math.floor((diff / (1000 * 60)) % 60);
+				const seconds = Math.floor((diff / 1000) % 60);
+				const countdownText = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+
+				if (countdownWidget) {
+					countdownWidget.textContent = countdownText;
+				}
+				if (topbarCountdown) topbarCountdown.textContent = countdownText;
+			}
+
+			updateCountdown();
+			setInterval(updateCountdown, 1000);
+		})();
 	</script>
 </body>
 
