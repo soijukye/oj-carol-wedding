@@ -30,12 +30,17 @@
 			scroll-behavior: smooth;
 		}
 
+		section {
+			scroll-margin-top: 110px;
+		}
+
 		body {
 			margin: 0;
 			font-family: Inter, sans-serif;
 			color: var(--text);
 			background: var(--bg);
 			min-height: 100vh;
+			overflow-x: hidden;
 		}
 
 		:focus-visible {
@@ -61,17 +66,19 @@
 			--nav-collapse: 0;
 			display: flex;
 			align-items: center;
-			justify-content: center;
+			justify-content: flex-start;
 			gap: calc(16px - 10px * var(--nav-collapse));
-			padding: calc(16px - 8px * var(--nav-collapse)) 24px;
+			padding: calc(12px - 5px * var(--nav-collapse)) 22px;
 			width: calc(100% - (var(--nav-collapse) * (100% - 200px)));
 			max-width: 1160px;
-			margin: 16px auto 0;
+			margin-top: 16px;
+			margin-left: max(16px, calc((100vw - 1160px) / 2));
+			margin-right: auto;
 			border: 1px solid var(--border);
-			border-radius: calc(22px - 8px * var(--nav-collapse));
+			border-radius: calc(18px - 6px * var(--nav-collapse));
 			background: rgba(255, 251, 246, 0.78);
 			backdrop-filter: blur(18px);
-			box-shadow: 0 12px 30px rgba(74, 53, 41, 0.08);
+			box-shadow: 0 8px 20px rgba(74, 53, 41, 0.07);
 			position: sticky;
 			top: 16px;
 			z-index: 30;
@@ -88,17 +95,18 @@
 		.nav-countdown {
 			white-space: nowrap;
 			opacity: clamp(0, calc(1 - (var(--nav-collapse) * 2.3)), 1);
-			max-width: clamp(0px, calc((1 - (var(--nav-collapse) * 2.3)) * 520px), 520px);
 			overflow: hidden;
 			transition: opacity 0.2s ease;
 		}
 
 		.nav-links {
 			display: flex;
-			flex-wrap: wrap;
+			flex-wrap: nowrap;
+			flex-grow: 1;
 			gap: 16px;
 			font-size: 0.92rem;
 			margin-left: 8px;
+			max-width: clamp(0px, calc((1 - (var(--nav-collapse) * 2.3)) * 900px), 900px);
 		}
 
 		.nav-links a {
@@ -112,9 +120,9 @@
 		}
 
 		.nav-countdown {
-			margin-left: auto;
 			text-align: right;
 			flex-shrink: 0;
+			max-width: clamp(0px, calc((1 - (var(--nav-collapse) * 2.3)) * 200px), 200px);
 		}
 
 		.nav-countdown-label {
@@ -171,6 +179,26 @@
 			font-weight: 500;
 		}
 
+		.voice-label {
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.18em;
+			font-weight: 700;
+			margin-right: 8px;
+		}
+
+		.voice-carol .voice-label {
+			color: var(--accent);
+		}
+
+		.voice-oj .voice-label {
+			color: var(--accent-2);
+		}
+
+		.voice-oj {
+			font-style: italic;
+		}
+
 		.kicker {
 			display: block;
 			font-size: 0.82rem;
@@ -210,7 +238,7 @@
 			content: "";
 			position: absolute;
 			inset: 0;
-			background: linear-gradient(180deg, rgba(24, 17, 13, 0.05) 0%, rgba(24, 17, 13, 0.15) 55%, rgba(24, 17, 13, 0.78) 100%);
+			background: linear-gradient(180deg, rgba(24, 17, 13, 0.08) 0%, rgba(24, 17, 13, 0.32) 40%, rgba(24, 17, 13, 0.72) 72%, rgba(24, 17, 13, 0.88) 100%);
 			pointer-events: none;
 		}
 
@@ -219,6 +247,7 @@
 			z-index: 2;
 			padding: 56px;
 			color: #fff8f1;
+			text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 		}
 
 		.hero-copy .kicker {
@@ -281,10 +310,6 @@
 		.moment {
 			width: min(1160px, calc(100% - 32px));
 			margin: 60px auto;
-		}
-
-		.moment figure {
-			margin: 0;
 			border-radius: 28px;
 			overflow: hidden;
 			box-shadow: var(--shadow);
@@ -295,23 +320,25 @@
 		.moment img {
 			width: 100%;
 			height: auto;
+			cursor: zoom-in;
 		}
 
-		.moment figcaption {
-			margin: 14px 4px 0;
-			color: var(--muted);
-			font-size: 0.95rem;
+		.moment.small {
+			width: min(560px, calc(100% - 32px));
 		}
 
-		.moment figcaption strong {
-			color: var(--text);
-			font-family: "Playfair Display", serif;
-			font-weight: 600;
-			margin-right: 8px;
+		.moment.wide img {
+			height: 930px;
+			max-height: 90vh;
+			object-fit: cover;
+			object-position: top;
 		}
 
-		.moment.tall figure {
-			max-height: 560px;
+		@media (max-width: 720px) {
+			.moment.wide img {
+				height: 280px;
+				max-height: 40vh;
+			}
 		}
 
 		.moment.tall img {
@@ -325,6 +352,11 @@
 			grid-template-columns: 1fr 1fr;
 			gap: 18px;
 			align-items: start;
+			background: none;
+			border-radius: 0;
+			overflow: visible;
+			box-shadow: none;
+			cursor: default;
 		}
 
 		.moment-pair figure {
@@ -340,12 +372,6 @@
 			width: 100%;
 			height: 380px;
 			object-fit: cover;
-		}
-
-		.moment-pair figcaption {
-			margin: 12px 4px 0;
-			color: var(--muted);
-			font-size: 0.92rem;
 		}
 
 		/* ---------- Text-with-photo section (invitation) ---------- */
@@ -446,6 +472,10 @@
 			display: grid;
 			grid-template-columns: 1fr;
 			gap: 18px;
+		}
+
+		.bank-tabs {
+			display: none;
 		}
 
 		.thank-you-note {
@@ -576,6 +606,28 @@
 		.countdown-band p {
 			margin: 0;
 			color: var(--muted);
+		}
+
+		.registry-band {
+			width: min(1160px, calc(100% - 32px));
+			margin: 60px auto;
+			text-align: center;
+			padding: 50px 32px;
+			border-radius: 32px;
+			background: rgba(168, 107, 85, 0.08);
+			border: 1px solid rgba(168, 107, 85, 0.16);
+		}
+
+		.registry-band h2 {
+			font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+			margin: 0 0 14px;
+		}
+
+		.registry-band p {
+			margin: 0 auto 26px;
+			max-width: 46ch;
+			color: var(--muted);
+			line-height: 1.8;
 		}
 
 		.footer {
@@ -710,22 +762,63 @@
 			}
 
 			.nav-links {
-				margin-left: 0;
+				margin-left: auto;
 				gap: 10px;
+				flex-grow: 0;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.nav-links {
+				margin-left: 0;
 			}
 
 			.nav-countdown {
-				margin-left: auto;
+				display: none;
 			}
 
 			.hero-copy {
 				padding: 30px 24px;
 			}
 
-			.moment.tall figure,
 			.moment.tall img {
 				max-height: 60vh;
 				height: 60vh;
+			}
+
+			.moment-pair {
+				row-gap: 0;
+			}
+
+			.moment-pair figure:nth-of-type(1) {
+				width: 74%;
+				max-width: 320px;
+				margin: -54px 6% 0 auto;
+				transform: rotate(2.5deg);
+				position: relative;
+				z-index: 2;
+			}
+
+			.moment-pair figure:nth-of-type(2) {
+				width: 74%;
+				max-width: 320px;
+				margin: -60px auto 0 6%;
+				transform: rotate(-2.2deg);
+				position: relative;
+				z-index: 3;
+			}
+
+			.moment.wide {
+				width: 80%;
+				max-width: 340px;
+				margin: -58px 4% 0 auto;
+				transform: rotate(1.6deg);
+				position: relative;
+				z-index: 4;
+			}
+
+			.moment-pair figure img {
+				height: 260px;
 			}
 
 			.lightbox-prev {
@@ -734,6 +827,44 @@
 
 			.lightbox-next {
 				right: 8px;
+			}
+
+			.bank-tabs {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-bottom: 18px;
+			}
+
+			.bank-tab {
+				appearance: none;
+				border: 1px solid var(--border);
+				background: rgba(255, 252, 248, 0.9);
+				color: var(--muted);
+				font: inherit;
+				font-size: 0.82rem;
+				font-weight: 700;
+				padding: 9px 16px;
+				border-radius: 999px;
+				cursor: pointer;
+			}
+
+			.bank-tab.is-active {
+				background: var(--accent);
+				border-color: var(--accent);
+				color: #fff8f1;
+			}
+
+			.bank-row {
+				display: block;
+			}
+
+			.bank-row .payment-card {
+				display: none;
+			}
+
+			.bank-row .payment-card.is-active {
+				display: block;
 			}
 		}
 
@@ -769,7 +900,7 @@
 
 	<section class="hero">
 		<img src="images/photo-1.jpeg" alt="Oj and Carol together" data-photo
-			data-caption-title="Oj &amp; Carol" data-caption-text="2 January 2027, Kampala.">
+>
 		<div class="hero-copy">
 			<span class="kicker">You are cordially invited</span>
 			<h1>Oj &amp; Carol</h1>
@@ -784,52 +915,62 @@
 
 	<section class="prose" id="story" style="margin-top: 70px;">
 		<h2>Our Story</h2>
-		<p>
-			We met on a rainy afternoon, when a shared umbrella became the first of many small adventures.
-			What started as a chance conversation grew into weekend road trips, a kitchen full of music,
-			and a life built on kindness and good coffee.
+		<p class="voice-carol">
+			<span class="voice-label">Carol</span>
+			I remember it was 25 November 2023 — a Christmas party organised by the Kenyan community
+			in London. Mutual friends decided we should all carpool, so I found myself sitting right
+			next to OJ. We talked all evening: good food, good music, and even better conversation.
+		</p>
+		<p class="voice-oj">
+			<span class="voice-label">OJ</span>
+			By the end of the night, I had Carol's number — the Ugandan way, of course, gotten from
+			our mutual friends rather than asking her myself. I texted her the second we'd dropped her
+			home, and after that we spoke every single day, going on a couple of dates in between.
 		</p>
 	</section>
 
 	<figure class="moment tall">
-		<img src="images/photo-2.jpeg" alt="Oj and Carol on an early trip together" loading="lazy" data-photo
-			data-caption-title="Where it started" data-caption-text="Add your own line about this photo.">
-		<figcaption><strong>Where it started</strong>Add your own line about this photo.</figcaption>
+		<img src="images/photo-2.jpeg" alt="Oj and Carol on an early trip together" loading="lazy" data-photo>
 	</figure>
 
 	<section class="prose">
+		<p class="voice-carol">
+			<span class="voice-label">Carol</span>
+			Two weeks after that Christmas party, I flew to Uganda. We spent hours on the phone getting
+			to know each other properly, and I could tell this was becoming something more than a few
+			good dates.
+		</p>
+		<p class="voice-oj">
+			<span class="voice-label">OJ</span>
+			When I realised Carol would be there for at least two months, I booked a flight out myself
+			— better to spend that time together in person than just talking every night on the phone.
+		</p>
 		<p>
-			This wedding is a celebration of the people, places, and moments that shaped our story.
-			We cannot wait to share one beautiful evening with the family and friends who made it all
-			possible.
+			Over the months that followed, our friendship deepened into something more. Three years on
+			from that first meeting, we're ready to cement our love and start our forever chapter.
 		</p>
 		<blockquote>
-			“Whatever our souls are made of, his and mine are the same.”
+			Join us on 2 January 2027 as OJ and Carol say “I do.”
 		</blockquote>
-		<cite>— Emily Brontë, Wuthering Heights</cite>
 	</section>
 
 	<div class="moment moment-pair">
 		<figure>
-			<img src="images/photo-3.jpeg" alt="Oj and Carol in Amsterdam" loading="lazy" data-photo
-				data-caption-title="March 2024" data-caption-text="Amsterdam, for Oj's birthday.">
-			<figcaption><strong>March 2024</strong>Amsterdam, for Oj's birthday.</figcaption>
+			<img src="images/photo-3.jpeg" alt="Oj and Carol in Amsterdam" loading="lazy" data-photo>
 		</figure>
 		<figure>
-			<img src="images/photo-4.jpeg" alt="Oj and Carol on the beach in Aqaba" loading="lazy" data-photo
-				data-caption-title="Aqaba, Jordan" data-caption-text="A week by the Red Sea.">
-			<figcaption><strong>Aqaba, Jordan</strong>A week by the Red Sea.</figcaption>
+			<img src="images/photo-4.jpeg" alt="Oj and Carol on the beach in Aqaba" loading="lazy" data-photo>
 		</figure>
 	</div>
 
-	<figure class="moment">
+	<figure class="moment wide">
 		<img src="images/photo-5.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
 	</figure>
 
 	<div class="split" id="invitation">
 		<figure>
 			<img src="images/photo-6.jpeg" alt="Oj and Carol" loading="lazy" data-photo
-				data-caption-title="See you in Kampala" data-caption-text="2 January 2027.">
+>
 		</figure>
 		<div>
 			<h2 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 0;">Join us in Kampala</h2>
@@ -850,16 +991,27 @@
 		</div>
 	</div>
 
+	<div class="registry-band" id="registry">
+		<h2>Gift Registry</h2>
+		<p>
+			Your presence at our wedding is the only gift we're asking for — having you there means
+			everything to us. If you'd still like to contribute towards our life together, we've
+			included our details below.
+		</p>
+		<a href="#contribute" class="button primary">Contribute</a>
+	</div>
+
 	<figure class="moment tall">
 		<img src="images/photo-7.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
 	</figure>
 
 	<section id="contribute" style="margin-top: 70px;">
 		<div class="contribute-intro">
-			<h2 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 0 0 8px;">Help us celebrate</h2>
+			<h2 style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 0 0 14px;">Help us celebrate</h2>
 			<p style="color: var(--muted); line-height: 1.8; margin: 0;">
-				Your presence is the only gift we're asking for. For anyone who'd still like to contribute,
-				our details are below.
+				Your presence is the greatest gift we could ask for. Our biggest wish is simply to gather
+				all of our favorite people in one room to celebrate. Help us make this day a reality by
+				contributing to our wedding — we are so grateful for your generosity.
 			</p>
 		</div>
 		<div class="contribution-grid">
@@ -876,8 +1028,14 @@
 					<img src="images/photo-8.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
 				</figure>
 			</div>
+			<div class="bank-tabs" role="tablist" aria-label="Currency">
+				<button type="button" class="bank-tab is-active" data-bank-tab="0" role="tab" aria-selected="true">UGX</button>
+				<button type="button" class="bank-tab" data-bank-tab="1" role="tab" aria-selected="false">GBP – Andrew</button>
+				<button type="button" class="bank-tab" data-bank-tab="2" role="tab" aria-selected="false">GBP – Carol</button>
+				<button type="button" class="bank-tab" data-bank-tab="3" role="tab" aria-selected="false">USD</button>
+			</div>
 			<div class="bank-row">
-				<div class="payment-card">
+				<div class="payment-card is-active" data-bank-panel="0">
 					<div class="kicker">UGX</div>
 					<h3>Bank transfer</h3>
 					<ul>
@@ -888,7 +1046,7 @@
 						<li><strong>UGX Swift/BIC</strong> HFINUGKAXXX</li>
 					</ul>
 				</div>
-				<div class="payment-card">
+				<div class="payment-card" data-bank-panel="1">
 					<div class="kicker">GBP</div>
 					<h3>Bank transfer</h3>
 					<ul>
@@ -900,7 +1058,7 @@
 						<li><strong>GBP IBAN</strong> GB18 REVO 0099 7086 7430 69</li>
 					</ul>
 				</div>
-				<div class="payment-card">
+				<div class="payment-card" data-bank-panel="2">
 					<div class="kicker">GBP</div>
 					<h3>Bank transfer</h3>
 					<ul>
@@ -912,7 +1070,7 @@
 						<li><strong>GBP IBAN</strong> GB07 REVO 0099 7087 7510 97</li>
 					</ul>
 				</div>
-				<div class="payment-card">
+				<div class="payment-card" data-bank-panel="3">
 					<div class="kicker">USD</div>
 					<h3>Bank transfer</h3>
 					<ul>
@@ -951,11 +1109,8 @@
 		<h3 id="countdown-widget">Loading…</h3>
 	</div>
 
-	<figure class="moment">
-		<img src="images/photo-9.jpeg" alt="Oj and Carol together" loading="lazy" data-photo
-			data-caption-title="Thank you for being part of our day"
-			data-caption-text="Your presence is the greatest gift.">
-		<figcaption><strong>Thank you for being part of our day</strong>Your presence is the greatest gift.</figcaption>
+	<figure class="moment small">
+		<img src="images/photo-9.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
 	</figure>
 
 	<footer class="footer">
@@ -1138,6 +1293,47 @@
 			update();
 		})();
 
+		/* ---------- Nav countdown fit check ---------- */
+		(function () {
+			const brand = document.querySelector(".brand");
+			const navCountdown = document.querySelector(".nav-countdown");
+			if (!brand || !navCountdown) return;
+
+			function updateFit() {
+				navCountdown.style.removeProperty("display");
+				const brandTop = Math.round(brand.getBoundingClientRect().top);
+				const countdownTop = Math.round(navCountdown.getBoundingClientRect().top);
+				if (countdownTop > brandTop + 2) {
+					navCountdown.style.display = "none";
+				}
+			}
+
+			updateFit();
+			window.addEventListener("resize", () => window.requestAnimationFrame(updateFit));
+			window.addEventListener("load", updateFit);
+		})();
+
+		/* ---------- Bank card tabs (mobile) ---------- */
+		(function () {
+			const tabs = Array.from(document.querySelectorAll("[data-bank-tab]"));
+			const panels = Array.from(document.querySelectorAll("[data-bank-panel]"));
+			if (!tabs.length || !panels.length) return;
+
+			tabs.forEach((tab) => {
+				tab.addEventListener("click", () => {
+					const target = tab.dataset.bankTab;
+					tabs.forEach((t) => {
+						const isActive = t === tab;
+						t.classList.toggle("is-active", isActive);
+						t.setAttribute("aria-selected", isActive ? "true" : "false");
+					});
+					panels.forEach((panel) => {
+						panel.classList.toggle("is-active", panel.dataset.bankPanel === target);
+					});
+				});
+			});
+		})();
+
 		/* ---------- Countdown ---------- */
 		(function () {
 			const weddingDate = new Date("2027-01-02T00:00:00+03:00");
@@ -1157,12 +1353,13 @@
 				const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
 				const minutes = Math.floor((diff / (1000 * 60)) % 60);
 				const seconds = Math.floor((diff / 1000) % 60);
-				const countdownText = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+				const longCountdownText = `${totalDays} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+				const shortCountdownText = `${totalDays}d ${hours}hr ${minutes}min ${seconds}sec`;
 
 				if (countdownWidget) {
-					countdownWidget.textContent = countdownText;
+					countdownWidget.textContent = longCountdownText;
 				}
-				if (topbarCountdown) topbarCountdown.textContent = countdownText;
+				if (topbarCountdown) topbarCountdown.textContent = shortCountdownText;
 			}
 
 			updateCountdown();
