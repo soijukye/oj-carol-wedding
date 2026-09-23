@@ -672,6 +672,38 @@
 			box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 		}
 
+		@keyframes lightboxSlideFromRight {
+			from {
+				transform: translateX(48px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		@keyframes lightboxSlideFromLeft {
+			from {
+				transform: translateX(-48px);
+				opacity: 0;
+			}
+
+			to {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		.lightbox-figure img.slide-next {
+			animation: lightboxSlideFromRight 0.32s ease;
+		}
+
+		.lightbox-figure img.slide-prev {
+			animation: lightboxSlideFromLeft 0.32s ease;
+		}
+
 		.lightbox-figure figcaption {
 			color: rgba(255, 246, 239, 0.9);
 			text-align: center;
@@ -747,10 +779,16 @@
 		}
 
 		@media (max-width: 720px) {
+			.hero {
+				min-height: 0;
+				height: 92vw;
+				max-height: 480px;
+			}
+
 			.nav {
 				--nav-collapse: 0 !important;
 				width: calc(100% - 32px);
-				flex-wrap: wrap;
+				flex-wrap: nowrap;
 				padding: 14px 16px;
 			}
 
@@ -758,14 +796,21 @@
 				margin-left: auto;
 				gap: 10px;
 				flex-grow: 0;
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+			}
+
+			.nav-links::-webkit-scrollbar {
+				display: none;
+			}
+
+			.nav-link-secondary {
+				display: none;
 			}
 		}
 
 		@media (max-width: 480px) {
-			.nav-links {
-				margin-left: 0;
-			}
-
 			.nav-countdown {
 				display: none;
 			}
@@ -835,12 +880,12 @@
 			}
 
 			.moment-pair {
-				row-gap: 0;
+				display: block;
 			}
 
 			.moment-pair figure:nth-of-type(1) {
 				width: 74%;
-				max-width: 320px;
+				max-width: clamp(240px, 38vw, 460px);
 				margin: -54px 6% 0 auto;
 				transform: rotate(2.5deg);
 				position: relative;
@@ -849,7 +894,7 @@
 
 			.moment-pair figure:nth-of-type(2) {
 				width: 74%;
-				max-width: 320px;
+				max-width: clamp(240px, 38vw, 460px);
 				margin: -60px auto 0 6%;
 				transform: rotate(-2.2deg);
 				position: relative;
@@ -857,12 +902,12 @@
 			}
 
 			.moment-pair figure img {
-				height: 260px;
+				height: clamp(220px, 30vw, 380px);
 			}
 
 			.moment.wide {
 				width: 80%;
-				max-width: 340px;
+				max-width: clamp(260px, 44vw, 520px);
 				margin: -58px 4% 0 auto;
 				transform: rotate(1.6deg);
 				position: relative;
@@ -870,8 +915,7 @@
 			}
 
 			.moment.wide img {
-				height: 280px;
-				max-height: 40vh;
+				height: clamp(220px, 30vw, 420px);
 			}
 
 			.split-photo {
@@ -889,6 +933,11 @@
 			.button:hover {
 				transform: none;
 			}
+
+			.lightbox-figure img.slide-next,
+			.lightbox-figure img.slide-prev {
+				animation: none;
+			}
 		}
 	</style>
 </head>
@@ -901,7 +950,7 @@
 		<nav class="nav-links" aria-label="Primary">
 			<a href="#story">Our Story</a>
 			<a href="#invitation">Invitation</a>
-			<a href="#contribute">Contribute</a>
+			<a href="#contribute" class="nav-link-secondary">Contribute</a>
 			<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVFocD_WCKbToMKIgLJPCgU_xavjk-Yn-75m5Ny8U-eRlQLg/viewform"
 				target="_blank" rel="noopener noreferrer">RSVP</a>
 		</nav>
@@ -1194,6 +1243,9 @@
 			function step(offset) {
 				index = (index + offset + photos.length) % photos.length;
 				render();
+				image.classList.remove("slide-next", "slide-prev");
+				void image.offsetWidth;
+				image.classList.add(offset > 0 ? "slide-next" : "slide-prev");
 			}
 
 			items.forEach((item, i) => {
