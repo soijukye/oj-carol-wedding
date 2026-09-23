@@ -72,7 +72,7 @@
 			width: calc(100% - (var(--nav-collapse) * (100% - 200px)));
 			max-width: 1160px;
 			margin-top: 16px;
-			margin-left: max(16px, calc((100vw - 1160px) / 2));
+			margin-left: max(16px, calc((100% - 1160px) / 2));
 			margin-right: auto;
 			border: 1px solid var(--border);
 			border-radius: calc(18px - 6px * var(--nav-collapse));
@@ -332,13 +332,6 @@
 			max-height: 90vh;
 			object-fit: cover;
 			object-position: top;
-		}
-
-		@media (max-width: 720px) {
-			.moment.wide img {
-				height: 280px;
-				max-height: 40vh;
-			}
 		}
 
 		.moment.tall img {
@@ -786,41 +779,6 @@
 				height: 60vh;
 			}
 
-			.moment-pair {
-				row-gap: 0;
-			}
-
-			.moment-pair figure:nth-of-type(1) {
-				width: 74%;
-				max-width: 320px;
-				margin: -54px 6% 0 auto;
-				transform: rotate(2.5deg);
-				position: relative;
-				z-index: 2;
-			}
-
-			.moment-pair figure:nth-of-type(2) {
-				width: 74%;
-				max-width: 320px;
-				margin: -60px auto 0 6%;
-				transform: rotate(-2.2deg);
-				position: relative;
-				z-index: 3;
-			}
-
-			.moment.wide {
-				width: 80%;
-				max-width: 340px;
-				margin: -58px 4% 0 auto;
-				transform: rotate(1.6deg);
-				position: relative;
-				z-index: 4;
-			}
-
-			.moment-pair figure img {
-				height: 260px;
-			}
-
 			.lightbox-prev {
 				left: 8px;
 			}
@@ -865,6 +823,61 @@
 
 			.bank-row .payment-card.is-active {
 				display: block;
+			}
+		}
+
+		@media (max-width: 960px) {
+			.square-ish img {
+				aspect-ratio: 4 / 5;
+				height: auto;
+				max-height: none;
+				object-fit: cover;
+			}
+
+			.moment-pair {
+				row-gap: 0;
+			}
+
+			.moment-pair figure:nth-of-type(1) {
+				width: 74%;
+				max-width: 320px;
+				margin: -54px 6% 0 auto;
+				transform: rotate(2.5deg);
+				position: relative;
+				z-index: 2;
+			}
+
+			.moment-pair figure:nth-of-type(2) {
+				width: 74%;
+				max-width: 320px;
+				margin: -60px auto 0 6%;
+				transform: rotate(-2.2deg);
+				position: relative;
+				z-index: 3;
+			}
+
+			.moment-pair figure img {
+				height: 260px;
+			}
+
+			.moment.wide {
+				width: 80%;
+				max-width: 340px;
+				margin: -58px 4% 0 auto;
+				transform: rotate(1.6deg);
+				position: relative;
+				z-index: 4;
+			}
+
+			.moment.wide img {
+				height: 280px;
+				max-height: 40vh;
+			}
+
+			.split-photo {
+				margin-top: -58px;
+				position: relative;
+				z-index: 5;
 			}
 		}
 
@@ -929,7 +942,7 @@
 		</p>
 	</section>
 
-	<figure class="moment tall">
+	<figure class="moment tall square-ish">
 		<img src="images/photo-2.jpeg" alt="Oj and Carol on an early trip together" loading="lazy" data-photo>
 	</figure>
 
@@ -968,7 +981,7 @@
 	</figure>
 
 	<div class="split" id="invitation">
-		<figure>
+		<figure class="split-photo">
 			<img src="images/photo-6.jpeg" alt="Oj and Carol" loading="lazy" data-photo
 >
 		</figure>
