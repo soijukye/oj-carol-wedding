@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 	<meta name="description" content="A romantic wedding website with event details, RSVP, and travel information.">
 	<title>Oj &amp; Carol | Wedding</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -905,17 +906,9 @@
 				height: clamp(220px, 30vw, 380px);
 			}
 
-			.moment.wide {
-				width: 80%;
-				max-width: clamp(260px, 44vw, 520px);
-				margin: -58px 4% 0 auto;
-				transform: rotate(1.6deg);
-				position: relative;
-				z-index: 4;
-			}
-
 			.moment.wide img {
 				height: clamp(220px, 30vw, 420px);
+				object-position: center 20%;
 			}
 
 			.split-photo {
@@ -1025,10 +1018,6 @@
 		</figure>
 	</div>
 
-	<figure class="moment wide">
-		<img src="images/photo-5.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
-	</figure>
-
 	<div class="split" id="invitation">
 		<figure class="split-photo">
 			<img src="images/photo-6.jpeg" alt="Oj and Carol" loading="lazy" data-photo
@@ -1083,7 +1072,7 @@
 					<h3>Send via mobile money</h3>
 					<ul>
 						<li><strong>Name</strong> Carol Kyomuhendo</li>
-						<li><strong>Number</strong> +256782406100</li>
+						<li><strong>Number</strong> <a href="tel:+256782406100" style="color: inherit; text-decoration: none;">+256 782 406 100</a></li>
 					</ul>
 				</div>
 				<figure class="contribute-photo">
@@ -1143,9 +1132,13 @@
 					</ul>
 				</div>
 			</div>
-			<p class="thank-you-note">Thank you for celebrating with us. Your presence means the world to us.</p>
+			<p class="thank-you-note">Thank you for supporting us. It means the world to us.</p>
 		</div>
 	</section>
+
+	<figure class="moment wide">
+		<img src="images/photo-5.jpeg" alt="Oj and Carol together" loading="lazy" data-photo>
+	</figure>
 
 	<section class="prose" id="faqs" style="margin-top: 70px;">
 		<h2>Questions?</h2>
